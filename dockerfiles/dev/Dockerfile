@@ -10,7 +10,6 @@ WORKDIR /app
 
 COPY . /app
 RUN npm install -g npm@latest
-RUN npm cache clean
 RUN npm cache verify
 RUN npm install
 
