@@ -1,7 +1,7 @@
 
 FROM ubi8/nodejs-20 as build
 
-USER su root
+USER root
 
 RUN ulimit -n 20000
 
