@@ -5,7 +5,7 @@ USER root
 
 RUN mkdir -p /app
 
-RUN ulimit -n 15000
+RUN -ulimit nofile=1024:4096
 
 # Set the working directory
 WORKDIR /app
