@@ -1,5 +1,5 @@
 
-FROM ubi8/nodejs-18 as build
+FROM ubi8/nodejs-20 as build
 
 USER root
 
