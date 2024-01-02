@@ -1,0 +1,941 @@
+@import "../node_modules/material-icons/iconfont/material-icons.scss";
+@import "../node_modules/materialize-css/sass/materialize.scss";
+@import './assets/scss/margenes_bootstrap.scss';
+/**
+* Variables de configuracion de paleta de colores
+**/
+
+$color-gris               : #7a7d83;
+$color-rojo               : #db473c;
+$color-cyan               : #88CFE0;
+$color-blanco             : #ffffff;
+$color-negro              : #212121;
+$color-gris-texto         : #686868;
+$color-verde              : #00a511;
+$color-amarillo           : #ffc800;
+$background-color-disabled: #DFDFDF;
+$color-disabled           : #9F9F9F;
+
+/*IMPORTA EL FORMATO DE LOS TITULOS DE SIRET EN LOS PORTALES*/
+@import './assets/scss/formato_titulos_siret.scss';
+
+
+html{
+    height: 100%;
+}
+
+td,
+p {
+
+    @extend .grey-text, .lighten-1 !optional;
+
+}
+
+.amarillo {
+    background: $color-amarillo !important;
+}
+
+.verde {
+    background: $color-verde !important;
+}
+
+.rojo {
+    background: $color-rojo !important;
+}
+
+.cyan {
+    background: $color-cyan !important;
+}
+
+.tr-seleccionado {
+    background: #f1fcff !important;
+    color     : $color-gris-texto;
+}
+
+.mr-2 {
+    margin-right: 20px;
+}
+
+.gris {
+    background: $color-gris !important;
+}
+
+.text-gris {
+    color: $color-gris;
+}
+
+.text-amarillo {
+    color: $color-amarillo;
+}
+
+.text-cyan {
+    color: $color-cyan !important;
+}
+
+.color-rojo {
+    background: $color-rojo;
+}
+
+.opacidad {
+    opacity: 0.9;
+}
+
+thead {
+    background: $color-cyan;
+    color     : $color-blanco;
+}
+
+.sefin-titulo-icono {
+    font-size  : 34px;
+    font-weight: 700;
+}
+
+.font40 {
+    font-size: 40px;
+}
+
+.ngx-pagination .current {
+    background: $color-cyan !important;
+}
+
+.sefin-btn-simple {
+    background: $color-cyan !important;
+}
+
+.sefin-btn-siguiente {
+    background: $color-rojo !important;
+}
+
+.sefin-btn-atras {
+    background: $color-rojo !important;
+}
+
+
+.sefin-btn-cancelar {
+    background: $color-gris !important;
+}
+
+.sefin-btn-finalizar {
+    background: $color-cyan !important;
+}
+
+.sefin-btn-aprobar {
+    background: $color-cyan !important;
+}
+
+.sefin-btn-si {
+    background: $color-cyan !important;
+}
+
+.sefin-btn-verificar {
+    background: $color-cyan !important;
+}
+
+.sefin-btn-no {
+    background: $color-cyan !important;
+}
+
+.sefin-btn-salir {
+    background: $color-rojo !important;
+}
+
+.sefin-btn-guardar {
+    background: $color-cyan !important;
+}
+
+.sefin-btn-simple,
+.sefin-btn-siguiente,
+.sefin-btn-atras,
+.sefin-btn-cancelar,
+.sefin-btn-finalizar,
+.sefin-btn-aprobar,
+.sefin-btn-si,
+.sefin-btn-verificar,
+.sefin-btn-no,
+.sefin-btn-salir,
+.sefin-btn-guardar {
+    @extend .waves-effect,
+    .waves-light,
+    .btn !optional;
+
+    i {
+        @extend .material-icons,
+        .right;
+    }
+}
+
+.sefin-btn-toolbar-eliminar {
+    background: $color-rojo !important;
+}
+
+.sefin-btn-toolbar-editar {
+    background: $color-cyan !important;
+}
+
+.sefin-btn-toolbar-mas {
+    background: $color-cyan !important;
+}
+
+.sefin-btn-toolbar-aprobar {
+    background: $color-cyan !important;
+}
+
+.sefin-btn-toolbar-rechazar {
+    background: $color-cyan !important;
+}
+
+.sefin-btn-toolbar-imprimir {
+    background: $color-cyan !important;
+}
+
+.sefin-btn-toolbar-consultar {
+    background: $color-cyan !important;
+}
+
+.sefin-btn-toolbar-desverificar {
+    background: $color-cyan !important;
+}
+
+.sefin-btn-toolbar-menos {
+    background: $color-cyan !important;
+}
+
+.sefin-btn-toolbar-eliminar,
+.sefin-btn-toolbar-editar,
+.sefin-btn-toolbar-mas,
+.sefin-btn-toolbar-aprobar,
+.sefin-btn-toolbar-rechazar,
+.sefin-btn-toolbar-imprimir,
+.sefin-btn-toolbar-consultar,
+.sefin-btn-toolbar-desverificar,
+.sefin-btn-toolbar-menos {
+    @extend .waves-effect,
+    .waves-light,
+    .btn !optional;
+
+    i {
+        @extend .material-icons;
+    }
+}
+
+.boton-cyan {
+    background: $color-cyan !important;
+}
+
+.boton-rojo {
+    background: $color-rojo !important;
+}
+
+.boton-gris {
+    background: $color-gris !important;
+}
+
+.sefin-navbar-color {
+    background: $color-cyan !important;
+}
+
+.sefin-footer-color {
+    background: $color-gris !important;
+}
+
+.sefin-color-color-gris {
+    color: $color-gris-texto !important;
+}
+
+.sefin-badge {
+    background: $color-blanco !important;
+    color     : $color-cyan !important;
+}
+
+.sefin-titulo-1 {
+    color      : $color-gris !important;
+    font-weight: 100;
+}
+
+.toast {
+    background: $color-cyan !important;
+}
+
+.sefin-titulo-4 {
+    color      : $color-gris-texto !important;
+    font-size  : 1.28rem;
+    line-height: 110%;
+    margin     : 1.52rem 0 0.912rem 0;
+}
+
+.sefin-titulo-3 {
+    color      : $color-gris-texto !important;
+    font-size  : 2.28rem;
+    line-height: 110%;
+    margin     : 1.52rem 0 0.912rem 0;
+}
+
+.sefin-parrafo {
+    color      : $color-gris-texto !important;
+    font-size  : 1.1rem;
+    line-height: 110%;
+}
+
+.sefin-text-justify {
+    text-align: justify !important;
+}
+
+.sefin-text-right {
+    text-align: right !important;
+}
+
+.simple-notification.info {
+    background: $color-cyan !important;
+}
+
+.simple-notification.error {
+    background: $color-rojo !important;
+}
+
+.simple-notification.success {
+    background: $color-verde !important;
+}
+
+.simple-notification.warn {
+    background: $color-amarillo !important;
+}
+
+.sefin-mapa-sitio {
+    background-color: $color-gris;
+
+    .breadcrumb:before {
+        color: $color-cyan;
+    }
+}
+
+.sefin-mapa-sitio2 {
+    background-color: $color-cyan;
+
+    .breadcrumb:before {
+        color: $color-gris;
+    }
+}
+
+.sefin-mapa-sitio3 {
+    background-color: $color-blanco;
+
+    a {
+        color: $color-cyan;
+    }
+
+    .breadcrumb:last-child {
+        color: $color-gris;
+    }
+
+    .breadcrumb:before {
+        color: $color-gris;
+    }
+}
+
+.language-markup {
+    padding   : 25px 12px 7px 12px;
+    border    : solid 1px rgba(51, 51, 51, 0.12);
+    background: rgba(246, 246, 246, 0.2);
+    overflow  : auto;
+
+}
+
+input:not([type]):focus:not([readonly]),
+input[type="text"]:not(.browser-default):focus:not([readonly]),
+input[type="password"]:not(.browser-default):focus:not([readonly]),
+input[type="email"]:not(.browser-default):focus:not([readonly]),
+input[type="url"]:not(.browser-default):focus:not([readonly]),
+input[type="time"]:not(.browser-default):focus:not([readonly]),
+input[type="date"]:not(.browser-default):focus:not([readonly]),
+input[type="datetime"]:not(.browser-default):focus:not([readonly]),
+input[type="datetime-local"]:not(.browser-default):focus:not([readonly]),
+input[type="tel"]:not(.browser-default):focus:not([readonly]),
+input[type="number"]:not(.browser-default):focus:not([readonly]),
+input[type="search"]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom     : 1px solid $color-cyan !important;
+    -webkit-box-shadow: 0 1px 0 0 $color-cyan !important;
+    box-shadow        : 0 1px 0 0 $color-cyan !important;
+}
+
+.input-field .prefix.active {
+    color: $color-cyan !important;
+}
+
+input:not([type]):focus:not([readonly])+label,
+input[type="text"]:not(.browser-default):focus:not([readonly])+label,
+input[type="password"]:not(.browser-default):focus:not([readonly])+label,
+input[type="email"]:not(.browser-default):focus:not([readonly])+label,
+input[type="url"]:not(.browser-default):focus:not([readonly])+label,
+input[type="time"]:not(.browser-default):focus:not([readonly])+label,
+input[type="date"]:not(.browser-default):focus:not([readonly])+label,
+input[type="datetime"]:not(.browser-default):focus:not([readonly])+label,
+input[type="datetime-local"]:not(.browser-default):focus:not([readonly])+label,
+input[type="tel"]:not(.browser-default):focus:not([readonly])+label,
+input[type="number"]:not(.browser-default):focus:not([readonly])+label,
+input[type="search"]:not(.browser-default):focus:not([readonly])+label,
+textarea.materialize-textarea:focus:not([readonly])+label {
+    color: $color-cyan !important;
+}
+
+.dropdown-content li>a,
+.dropdown-content li>span {
+    color: $color-gris-texto !important;
+}
+
+.select-wrapper input.select-dropdown:focus {
+    border-bottom: 1px solid $color-gris;
+}
+
+[type="checkbox"]:checked+span:not(.lever):before {
+    border-right : 2px solid $color-cyan !important;
+    border-bottom: 2px solid $color-cyan !important;
+}
+
+[type="radio"]:checked+span:after,
+[type="radio"].with-gap:checked+span:before,
+[type="radio"].with-gap:checked+span:after {
+    border: 2px solid $color-cyan !important;
+}
+
+[type="radio"]:checked+span:after,
+[type="radio"].with-gap:checked+span:after {
+    background-color: $color-cyan !important;
+}
+
+#mensajes {
+    height: auto;
+}
+
+.texto {
+    padding   : 4px;
+    background: $color-blanco;
+}
+
+.tabs .tab a:focus,
+.tabs .tab a:focus.active {
+    background-color: $color-blanco;
+    outline         : none;
+}
+
+.tabs .tab a {
+    color: rgb(110 143 238 / 70%);
+}
+
+.img-s-permiso-false {
+    filter: grayscale(100%) opacity(30%);
+}
+
+.apps-img {
+    height: 130px;
+    cursor: pointer;
+}
+
+.header {
+    font-weight: 300;
+}
+
+.titulo-grafico {
+    font-weight: 700;
+    color      : $color-rojo;
+}
+
+
+
+.user {
+    display      : inline-block;
+    max-height   : 45px;
+    border-radius: 50%;
+}
+
+.datos-user {
+    font-size     : 11px;
+    display       : block;
+    width         : 150px;
+    line-height   : 18px;
+    color         : $color-blanco;
+}
+
+a.dropdown-trigger>span.uno {
+    margin-top: 5px;
+}
+
+div.opt>a {
+    margin-right: 10px;
+}
+
+body {
+    flex      : 1;
+    overflow-y: auto;
+}
+
+body::-webkit-scrollbar {
+    width: 6px;
+}
+
+body::-webkit-scrollbar-track {
+    background: $color-gris-texto;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: $color-cyan;
+}
+
+.modal {
+    background-color: $color-blanco;
+    color           : $color-blanco;
+}
+
+.navatar {
+    .brand-logo {
+        position    : static;
+        margin-right: 12px;
+    }
+
+    app-sefin-avatarbar {
+        height: inherit;
+    }
+
+    #avatar {
+        height: inherit;
+
+        >li,
+        a {
+            height: inherit;
+
+            img {
+                height : 100%;
+                padding: 8px;
+            }
+        }
+    }
+}
+
+
+.tabss>li>a {
+    color: $color-gris;
+}
+
+.active-tab>a {
+    color: $color-cyan !important;
+}
+
+.container-fluid {
+    margin    : 2%;
+}
+
+.circular--landscape {
+    display        : inline-block;
+    position       : relative;
+    width          : 300px;
+    height         : 300px;
+    overflow       : hidden;
+    //border-radius: 50%;
+}
+
+.circular--landscape img {
+    width : auto;
+    height: 100%;
+}
+
+.foto {
+    position: absolute;
+    top     : 0;
+    left    : 0;
+    right   : 0;
+    bottom  : 0;
+    width   : 100%;
+    height  : 100%;
+    opacity : 0;
+    cursor  : pointer;
+}
+
+.dropshadow {
+    -webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow        : 0px 1px 1px rgba(0, 0, 0, 0.05);
+    border-bottom     : dashed 1px #ddd;
+}
+
+.swal2-styled.swal2-confirm {
+    background      : initial;
+    background-color: $color-cyan !important;
+    color           : $color-blanco;
+    font-size       : 1em;
+    border          : none;
+    border-radius   : 2px !important;
+    display         : inline-block;
+    height          : 36px;
+    line-height     : 36px;
+    padding         : 0 16px;
+    text-transform  : uppercase !important;
+}
+
+.sefin-container {
+    @extend .container !optional;
+}
+
+.sefin-center {
+    @extend .center !optional;
+}
+
+.sefin-row {
+    @extend .row !optional;
+}
+
+
+.sefin-col-sm-1 {
+    @extend .col,
+    .s1 !optional;
+}
+
+.sefin-col-sm-2 {
+    @extend .col,
+    .s2 !optional;
+}
+
+.sefin-col-sm-3 {
+    @extend .col,
+    .s3 !optional;
+}
+
+.sefin-col-sm-4 {
+    @extend .col,
+    .s4 !optional;
+}
+
+.sefin-col-sm-5 {
+    @extend .col,
+    .s5 !optional;
+}
+
+.sefin-col-sm-6 {
+    @extend .col,
+    .s6 !optional;
+}
+
+.sefin-col-sm-7 {
+    @extend .col,
+    .s7 !optional;
+}
+
+.sefin-col-sm-8 {
+    @extend .col,
+    .s8 !optional;
+}
+
+.sefin-col-sm-9 {
+    @extend .col,
+    .s9 !optional;
+}
+
+.sefin-col-sm-10 {
+    @extend .col,
+    .s10 !optional;
+}
+
+.sefin-col-sm-11 {
+    @extend .col,
+    .s11 !optional;
+}
+
+.sefin-col-sm-12 {
+    @extend .col,
+    .s12 !optional;
+}
+
+
+.sefin-col-md-1 {
+    @extend .col,
+    .m1 !optional;
+}
+
+.sefin-col-md-2 {
+    @extend .col,
+    .m2 !optional;
+}
+
+.sefin-col-md-3 {
+    @extend .col,
+    .m3 !optional;
+}
+
+.sefin-col-md-4 {
+    @extend .col,
+    .m4 !optional;
+}
+
+.sefin-col-md-5 {
+    @extend .col,
+    .m5 !optional;
+}
+
+.sefin-col-md-6 {
+    @extend .col,
+    .m6 !optional;
+}
+
+.sefin-col-md-7 {
+    @extend .col,
+    .m7 !optional;
+}
+
+.sefin-col-md-8 {
+    @extend .col,
+    .m8 !optional;
+}
+
+.sefin-col-md-9 {
+    @extend .col,
+    .m9 !optional;
+}
+
+.sefin-col-md-10 {
+    @extend .col,
+    .m10 !optional;
+}
+
+.sefin-col-md-11 {
+    @extend .col,
+    .m11 !optional;
+}
+
+.sefin-col-md-12 {
+    @extend .col,
+    .m12 !optional;
+}
+
+
+.sefin-col-lg-1 {
+    @extend .col,
+    .l1 !optional;
+}
+
+.sefin-col-lg-2 {
+    @extend .col,
+    .l2 !optional;
+}
+
+.sefin-col-lg-3 {
+    @extend .col,
+    .l3 !optional;
+}
+
+.sefin-col-lg-4 {
+    @extend .col,
+    .l4 !optional;
+}
+
+.sefin-col-lg-5 {
+    @extend .col,
+    .l5 !optional;
+}
+
+.sefin-col-lg-6 {
+    @extend .col,
+    .l6 !optional;
+}
+
+.sefin-col-lg-7 {
+    @extend .col,
+    .l7 !optional;
+}
+
+.sefin-col-lg-8 {
+    @extend .col,
+    .l8 !optional;
+}
+
+.sefin-col-lg-9 {
+    @extend .col,
+    .l9 !optional;
+}
+
+.sefin-col-lg-10 {
+    @extend .col,
+    .l10 !optional;
+}
+
+.sefin-col-lg-11 {
+    @extend .col,
+    .l11 !optional;
+}
+
+.sefin-col-lg-12 {
+    @extend .col,
+    .l12 !optional;
+}
+
+
+.sefin-col-xl-1 {
+    @extend .col,
+    .xl1 !optional;
+}
+
+.sefin-col-xl-2 {
+    @extend .col,
+    .xl2 !optional;
+}
+
+.sefin-col-xl-3 {
+    @extend .col,
+    .xl3 !optional;
+}
+
+.sefin-col-xl-4 {
+    @extend .col,
+    .xl4 !optional;
+}
+
+.sefin-col-xl-5 {
+    @extend .col,
+    .xl5 !optional;
+}
+
+.sefin-col-xl-6 {
+    @extend .col,
+    .xl6 !optional;
+}
+
+.sefin-col-xl-7 {
+    @extend .col,
+    .xl7 !optional;
+}
+
+.sefin-col-xl-8 {
+    @extend .col,
+    .xl8 !optional;
+}
+
+.sefin-col-xl-9 {
+    @extend .col,
+    .xl9 !optional;
+}
+
+.sefin-col-xl-10 {
+    @extend .col,
+    .xl10 !optional;
+}
+
+.sefin-col-xl-11 {
+    @extend .col,
+    .xl11 !optional;
+}
+
+.sefin-col-xl-12 {
+    @extend .col,
+    .xl12 !optional;
+}
+
+.sefin-font100 {
+    font-size: 100px;
+}
+
+.sefin-sidenav {
+    @extend .sidenav !optional;
+}
+
+.sefin-sidenav-trigger {
+    @extend .sidenav-trigger !optional;
+}
+
+.sefin-btn-simple-icono {
+    background  : $color-cyan !important;
+    margin-right: 10px !important;
+    @extend .waves-effect,
+    .waves-light,
+    .btn !optional;
+
+    i {
+        @extend .material-icons;
+    }
+}
+
+
+.sefin-icono {
+    @extend .material-icons;
+}
+
+.sefin-margin-right {
+    margin-right: 10px !important;
+}
+
+.sefin-tabla-rayada {
+    @extend .striped;
+}
+
+.sefin-tabla-hover {
+    @extend .highlight;
+}
+
+.sefin-tabla-centrada {
+    @extend .centered;
+}
+
+.sefin-tabla-responsiva {
+    @extend .responsive-table;
+}
+
+.sefin-tabla-rayada-responsiva {
+    @extend .striped,
+    .responsive-table !optional;
+}
+
+.sefin-tabla-hover-responsiva {
+    @extend .highlight,
+    .responsive-table !optional;
+}
+
+.sefin-card-panel {
+    @extend .card-panel
+}
+
+.sefin-textarea {
+    @extend .materialize-textarea
+}
+
+th>label>[type=checkbox].filled-in:checked+span:not(.lever):after {
+
+    border          : 2px solid #ffffff !important;
+    background-color: #ffffff !important;
+
+}
+
+
+/* Importing Datepicker SCSS file. */
+@import "~ngx-bootstrap/datepicker/bs-datepicker";
+
+
+.theme-dark-blue .bs-datepicker-head {
+    background-color: $color-cyan;
+}
+
+.theme-dark-blue .bs-datepicker-body table td span.selected,
+.theme-dark-blue .bs-datepicker-body table td.selected span,
+.theme-dark-blue .bs-datepicker-body table td span[class*=select-]:after,
+.theme-dark-blue .bs-datepicker-body table td[class*=select-] span:after {
+    background-color: $color-cyan;
+}
+
+.bs-datepicker-body table th {
+    color: #ffffff !important;
+}
+
+.container {
+    margin-bottom: 2% !important;
+}
+
+.negrilla {
+    font-weight: 700;
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+
+.texto-rojo {
+    color: red!important;
+}
+
+.modal .modal-footer {
+    background-color: #88cfe0 !important;
+}

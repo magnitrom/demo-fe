@@ -1,0 +1,114 @@
+<main >
+
+    <div class="row">
+        <div class="col s12">
+            <h3 class="text-cyan subtitulos-siret center">
+                <i aria-hidden="true" class="sefin-icono center text-amarillo font40">table_view</i>
+               DETALLE DE REVERSIÓN<br>
+            </h3>
+        </div>
+    </div>
+
+  
+
+    <div class="sefin-row">
+
+        <div class="input-field col s6">
+            <label>Número Reversión:</label>
+            <input placeholder="Número Reversión" id="nrev" type="text" class="active"
+                value="{{reversionTgr.numeroReversion}}" readonly>
+        </div>
+        <div class="input-field col s6">
+            <label>Número TGR:</label>
+            <input placeholder="Número TGR" id="ntgr" type="text" class="active" value="{{reversionTgr.numeroTgr}}"
+                readonly>
+        </div>
+        <div class="input-field col s6">
+            <label>Número ID:</label>
+            <input placeholder="Número TGR" id="ntgr" type="text" class="active" value="{{reversionTgr.numeroId}}"
+                readonly>
+        </div>
+        <div class="input-field col s6">
+            <label>Nombre / Razón social:</label>
+            <input placeholder="Número TGR" id="ntgr" type="text" class="active" value="{{reversionTgr.nombreRazonSocial}}"
+                readonly>
+        </div>
+
+        <div class="input-field col s6">
+            <label for="monto">Monto:</label>
+            <input placeholder="Monto:" id="monto" type="text" value="{{reversionTgr.monto | currency:'HNL':'L'}}"
+                readonly>
+        </div>
+
+        <div class="input-field col s6">
+            <label for="fePag">Fecha pago:</label>
+            <input placeholder="Fecha Pago:" id="fePag" type="text" value="{{reversionTgr.fechaPago}}" readonly>
+        </div>
+
+        <div class="input-field col s6">
+            <label for="fePag">Estado TGR:</label>
+            <input placeholder="Fecha Pago:" id="fePag" type="text" value="{{reversionTgr.estadoTGR}}" readonly>
+        </div>
+
+        <div class="input-field col s12">
+            <label for="nBan">Banco solicitante:</label>
+            <input placeholder="Banco solicitante" id="nBan" type="text" value="{{reversionTgr.nombreBanco}}" readonly>
+        </div>
+
+        <div class="input-field col s12">
+            <label for="nBan">Agencia:</label>
+            <input placeholder="Banco solicitante" id="nBan" type="text" value="{{reversionTgr.nombreAgencia}}" readonly>
+        </div>
+
+        <div class="input-field col s12">
+            <label for="nBan">Cajero:</label>
+            <input placeholder="Banco solicitante" id="nBan" type="text" value="{{reversionTgr.cajero}}" readonly>
+        </div>
+
+        <div class="input-field col s12">
+            <label for="nBan">Aprobado por:</label>
+            <input placeholder="Banco solicitante" id="nBan" type="text" value="{{reversionTgr.aprobadoPor}}" readonly>
+        </div>
+
+        <div class="input-field col s12">
+            <label for="nBan">Fecha-hora aprobación:</label>
+            <input placeholder="Banco solicitante" id="nBan" type="text" value="{{reversionTgr.fechaHoraAprobacion}}" readonly>
+        </div>
+
+        <div class="input-field col s12">
+            <label for="nBan">Transacción bancaria:</label>
+            <input placeholder="Banco solicitante" id="nBan" type="text" value="{{reversionTgr.transaccionBancaria}}" readonly>
+        </div>
+
+        <div class="input-field col s6">
+            <label for="feCre">Fecha Creacion:</label>
+            <input placeholder="Fecha Creacion:" id="feCre" type="text" value="{{reversionTgr.fechaCreacion}}" readonly>
+        </div>
+
+        <div class="input-field col s6">
+            <label for="estGes">Estado Gestión:</label>
+            <input placeholder="Estado Gestión:" id="estGes" type="text" value="{{reversionTgr.estadoGestion}}"
+                readonly>
+        </div>
+
+        <div class="input-field col s12">
+            <label for="motivo">Motivo:</label>
+            <textarea class="materialize-textarea" placeholder="Motivo:" id="motivo" type="text"
+                value="{{reversionTgr.motivo}}" readonly> </textarea>
+        </div>
+
+        <div class="input-field col s12">
+            <label for="obsApr">Observaciones Aprobador:</label>
+            <textarea class="materialize-textarea" placeholder="Ninguna" id="obsApr" type="text"
+                value="{{reversionTgr.observacionesAprobador}}" readonly>      </textarea>
+        </div>
+
+    </div>
+
+
+    
+
+
+
+
+</main>

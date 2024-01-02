@@ -1,0 +1,144 @@
+<main class="container-fluid mb-4" aria-label="TGR Creados">
+    <div class="sefin-row">
+        <div class="sefin-col-sm-12">
+
+            <div class="sefin-col-sm-12">
+                <h3 class="text-cyan titulos-siret center">
+                    <i aria-hidden="true" class="sefin-icono center text-amarillo font40">table_view</i>
+                    Consolidado de Solicitudes de Devolución<br>
+                </h3>
+
+            </div>
+
+            <p>
+                <a type="button" (click)="regresar()" class="btn grey white-text mb-3"><i aria-hidden="true"
+                        class="material-icons left">arrow_back_ios</i> Regresar
+                </a>
+            </p>
+        </div>
+        <div class="sefin-col-sm-12">
+            <p class="mt-4"></p>
+            <p class="mt-4"></p>
+        </div>
+        <div class="col s4">
+            <label for="Daterangepicker">Buscar por fechas</label>
+            <input type="text" id="Daterangepicker" [bsConfig]="bsConfig" bsDaterangepicker [(ngModel)]="range"
+                class="form-control" (bsValueChange)="cambioDeFechaSolicitudes($event)">
+        </div>
+        <div id="buscador" class="input-field  offset-s4 sefin-col-sm-4">
+            <i aria-hidden="true" class="sefin-icono prefix">search</i><input id="searchUno" type="text"
+                name="searchUno" [(ngModel)]="searchUno" class="ng-valid ng-dirty ng-touched">
+            <label for="searchUno" class="">Buscar</label><span data-error="wrong" data-success="right"
+                class="helper-text"> {{(jsonSolicitudesDevolucion |filter:searchUno)?.length}} / {{jsonSolicitudesDevolucion?.length}}
+            </span>
+        </div>
+        <div class="sefin-col-sm-12">
+            <table class="striped responsive-table">
+                <caption></caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Número Gestión</th>
+                        <th scope="col">Institución</th>
+                        <th scope="col">Número TGR</th>
+                        <th scope="col">Estado del TGR</th>
+                        <th scope="col">Monto Devolución</th>
+                        <th scope="col">Estado Gestión</th>
+                        <th scope="col" style="width: 200px;">Motivo</th>
+                        <th scope="col" style="width: 200px;">Observaciones</th>
+                        <th scope="col">Número de expediente</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr
+                        *ngFor="let solicitud of jsonSolicitudesDevolucion |filter:searchUno | paginate: { itemsPerPage: 5, currentPage: pagina}">
+                        <td>{{solicitud.gestionDevolucion}}</td>
+                        <td>{{solicitud.institucionId}}</td>
+                        <td>{{solicitud.numeroTgr}}</td>
+                        <td>{{solicitud.estadoTgr}}</td>
+                        <td>{{solicitud.montoDevolucion|currency :'L '}}</td>
+
+                        <td>{{solicitud.estadoGestion}}</td>
+                        <td>{{solicitud.motivoDevolucion}}</td>
+                        <td>{{solicitud.observacionesAprobador}}</td>
+                        <td>{{solicitud.numeroExpediente}}</td>
+                        <td>{{solicitud.fechaCreacion}}</td>
+                        <td>
+                            <p class="center">
+                                <button class="btn cyan" title="Ver Detalle del TGR"
+                                    (click)="abrirModalDetalles(solicitud)"><i aria-hidden="true"
+                                        class="sefin-icono">visibility</i></button>
+                            </p>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row">
+            <div class="sefin-col-lg-4">
+
+                <p class="uppercase">
+                    <span class="negrilla">Registros encontrados: </span> {{(jsonSolicitudesDevolucion |filter:searchUno).length}}
+                </p>
+
+            </div>
+            <div class="sefin-col-lg-4">
+                <p class="center negrilla">
+                    TOTAL DE TGR: {{obtenerTotal(jsonSolicitudesDevolucion |filter:searchUno, 'montoDevolucion') | currency:'HNL':'L'
+                    }}
+                </p>
+            </div>
+
+            <div class="sefin-col-lg-4">
+                <div class="right negrilla">
+
+                    <button type="button" title="Imprimir" class="btn cyan mt-1 mr-1"
+                        (click)="imprimirTGRSCreados((jsonSolicitudesDevolucion),searchUno, 'Creados')">
+                        <i aria-hidden="true" class="material-icons center">print</i>
+                    </button>
+
+                    <button type="button" title="Descargar" class="btn cyan mt-1"
+                        (click)="descargarLista((jsonSolicitudesDevolucion), searchUno, 'TGR Creados')">
+                        <i aria-hidden="true" class="material-icons center">download</i>
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="center-align">
+            <p *ngIf="(jsonSolicitudesDevolucion |filter:searchUno).length==0">
+                No hay registros
+            </p>
+            <pagination-controls previousLabel="Anterior" nextLabel="Siguiente"
+                (pageChange)="pagina = $event"></pagination-controls>
+        </div>
+
+        <div class="row mt-5" aria-label="Bitacora usuario consulta">
+            <div class="col s12">
+
+                <div class="center-align">
+                    <div class="input-field col s3 offset-s3">
+                        <input id="input_text" type="text" class="uppercase" [value]="auditoriaConsultaUsuario.usuario"
+                            placeholder="Usuario" readonly>
+                        <label for="input_text" class="uppercase"
+                            [ngClass]="{'active':auditoriaConsultaUsuario.usuario}">Usuario consulta</label>
+                    </div>
+                    <div class="input-field col s3">
+                        <input id="input_text" type="text" class="uppercase"
+                            [value]="auditoriaConsultaUsuario.fechaActual" placeholder="fecha" readonly>
+                        <label for="input_text" class="uppercase"
+                            [ngClass]="{'active':auditoriaConsultaUsuario.fechaActual}">Fecha Consulta</label>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</main>

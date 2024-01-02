@@ -1,0 +1,131 @@
+<main class="sefin-container">
+    <div class="sefin-row">
+       <div class="sefin-col-sm-12 ">
+          <h1 class="sefin-titulo-1 uppercase center-align titulos-siret">Portal administrativo</h1>
+       </div>
+    </div>
+ 
+    <div class="sefin-row" >
+       <a [routerLink]="['/listado-parametros']" *ngIf="existePerfil(['gdSIRET_consultaTodoSIRET', 'gdSIRET_analistaIngresosTGR', 'gdSIRET_jefeIngresosTGR', 'gdSIRET_autoridadTGR'])">
+          <div class="col s12 m6 l4 ">
+             <div class="card cyan z-depth-2 ">
+                <div class="card-content center-align">
+                   <img class="center-align" height="100" src="../../../assets/images/menu-icons/blancas/parametros.png"
+                      alt="si">
+                   <span class="card-title white-text subtitulos-siret">PARÁMETROS</span>
+                </div>
+             </div>
+          </div>
+       </a>
+ 
+       <a [hidden]="true" >
+          <div class="col s12 m6 l4 ">
+             <div class="card cyan z-depth-2 ">
+                <div class="card-content center-align">
+                   <img class="center-align" height="100" src="../../../assets/images/menu-icons/blancas/perfiles.png"
+                      alt="si">
+                   <span class="card-title white-text subtitulos-siret">PERFILES</span>
+                </div>
+             </div>
+          </div>
+       </a>
+ 
+       <a [hidden]="true" [routerLink]="['/usuarios']">
+          <div class="col s12 m6 l4 ">
+             <div class="card cyan z-depth-2 ">
+                <div class="card-content center-align">
+                   <img class="center-align" height="100" src="../../../assets/images/menu-icons/blancas/usuarios.png"
+                      alt="si">
+                   <span class="card-title white-text subtitulos-siret">USUARIOS</span>
+                </div>
+             </div>
+          </div>
+       </a>
+ 
+       <a [routerLink]="['/consulta-servicios']" *ngIf="existePerfil(['gdSIRET_consultaTodoSIRET', 'gdSIRET_analistaIngresosTGR', 'gdSIRET_jefeIngresosTGR', 'gdSIRET_autoridadTGR' ,'gdSIRET_consultasIngresosDGP'])">
+          <div class="col s12 m6 l4 ">
+             <div class="card cyan z-depth-2 ">
+                <div class="card-content center-align">
+                   <img class="center-align" height="100"
+                      src="../../../assets/images/menu-icons/blancas/consultageneral.png" alt="si">
+                   <span class="card-title white-text subtitulos-siret">CONSULTA DE SERVICIOS INSTITUCIONALES</span>
+                </div>
+             </div>
+          </div>
+       </a>
+ 
+       <a [routerLink]="['/informes/sol-reversion']" *ngIf="existePerfil(['gdSIRET_analistaIngresosTGR', 'gdSIRET_jefeIngresosTGR', 'gdSIRET_autoridadTGR' ,'gdSIRET_consultasIngresosDGP'])">
+          <div class="col s12 m6 l4 ">
+             <div class="card cyan z-depth-2 ">
+                <div class="card-content center-align">
+                   <img class="center-align" height="100" src="../../../assets/images/menu-icons/blancas/revert.png"
+                      alt="si">
+                   <span class="card-title white-text subtitulos-siret">Solicitudes de Reversión de TGR</span>
+                </div>
+             </div>
+          </div>
+       </a>
+ 
+       <a [routerLink]="['/cierre-diario']" *ngIf="existePerfil(['gdSIRET_consultaTodoSIRET', 'gdSIRET_analistaIngresosTGR', 'gdSIRET_jefeIngresosTGR', 'gdSIRET_autoridadTGR' ,'gdSIRET_consultasIngresosDGP'])">
+          <div class="col s12 m6 l4 ">
+             <div class="card cyan z-depth-2 ">
+                <div class="card-content center-align">
+                   <img class="center-align" height="100" src="../../../assets/images/menu-icons/blancas/revert.png"
+                      alt="si">
+                   <span class="card-title white-text subtitulos-siret"> Cierre Diario de Ingresos del SIRET</span>
+                </div>
+             </div>
+          </div>
+       </a>
+ 
+       <a [routerLink]="['/bitacora-acceso']" *ngIf="existePerfil(['gdSIRET_consultaTodoSIRET', 'gdSIRET_analistaIngresosTGR', 'gdSIRET_jefeIngresosTGR', 'gdSIRET_autoridadTGR' ,'gdSIRET_consultasIngresosDGP'])">
+          <div class="col s12 m6 l4 ">
+             <div class="card cyan z-depth-2 ">
+                <div class="card-content center-align">
+                   <img class="center-align" height="100" src="../../../assets/images/menu-icons/blancas/perfiles.png"
+                      alt="si">
+                   <span class="card-title white-text subtitulos-siret">Bitácora de acceso (Portal Admnistrativo)</span>
+                </div>
+             </div>
+          </div>
+       </a>
+ 
+       <a [routerLink]="['/bitacora-acceso-ins']" *ngIf="existePerfil(['gdSIRET_consultaTodoSIRET', 'gdSIRET_analistaIngresosTGR', 'gdSIRET_jefeIngresosTGR', 'gdSIRET_autoridadTGR' ,'gdSIRET_consultasIngresosDGP'])">
+          <div class="col s12 m6 l4 ">
+             <div class="card cyan z-depth-2 ">
+                <div class="card-content center-align">
+                   <img class="center-align" height="100" src="../../../assets/images/menu-icons/blancas/perfiles.png"
+                      alt="si">
+                   <span class="card-title white-text subtitulos-siret">Bitácora de acceso (Portal Institucional)</span>
+                </div>
+             </div>
+          </div>
+       </a>
+ 
+       <a [routerLink]="['/informes']" *ngIf="existePerfil(['gdSIRET_consultaTodoSIRET', 'gdSIRET_analistaIngresosTGR', 'gdSIRET_jefeIngresosTGR', 'gdSIRET_autoridadTGR'])">
+          <div class="col s12 m6 l4 ">
+             <div class="card cyan z-depth-2 ">
+                <div class="card-content center-align">
+                   <img class="center-align" height="100" src="../../../assets/images/menu-icons/blancas/revision.png"
+                      alt="si">
+                   <span class="card-title white-text subtitulos-siret">Consultas Generales TGR</span>
+                </div>
+             </div>
+          </div>
+       </a>
+ 
+       <a [routerLink]="['/sol-devolucion']" *ngIf="existePerfil(['gdSIRET_analistaIngresosTGR', 'gdSIRET_jefeIngresosTGR', 'gdSIRET_autoridadTGR' ,'gdSIRET_consultasIngresosDGP'])">
+          <div class="col s12 m6 l4 ">
+             <div class="card cyan z-depth-2 ">
+                <div class="card-content center-align">
+                   <img class="center-align" height="100" src="../../../assets/images/menu-icons/blancas/revert.png"
+                      alt="si">
+                   <span class="card-title white-text subtitulos-siret">Solicitudes de Devolución</span>
+                </div>
+             </div>
+          </div>
+       </a>
+ 
+    </div>
+ 
+ </main>

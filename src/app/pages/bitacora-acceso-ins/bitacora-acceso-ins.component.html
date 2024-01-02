@@ -1,0 +1,107 @@
+<div class="sefin-row">
+    <div class="sefin-col-sm-12">
+        <div class="sefin-col-sm-12">
+            <h3 class="text-cyan titulos-siret center">
+                <i aria-hidden="true" class="sefin-icono center text-amarillo font40">table_view</i>
+                BITÁCORA DE ACCESO AL PORTAL INSTITUCIONAL <br>
+            </h3>
+        </div>
+        <p>
+            <a type="button" (click)="regresar()" class="btn grey white-text mb-3"><i aria-hidden="true" class="material-icons left">arrow_back_ios</i> Regresar
+            </a>
+        </p>
+    </div>
+
+    <div class="sefin-row">
+        <div class="col s12 m4">
+            <label for="Daterangepicker2">Buscar por fechas</label>
+            <input 
+                type="text" 
+                id="Daterangepicker2" 
+                bsDaterangepicker
+                [bsConfig]="bsConfig"
+                [(ngModel)]="range"
+                (bsValueChange)="cambioDeFecha($event)"
+            >
+        </div>
+
+        <div id="buscador" class="input-field  offset-s4 sefin-col-sm-4">
+            <i aria-hidden="true" class="sefin-icono prefix">search</i><input id="searchUno" type="text" name="searchUno" [(ngModel)]="searchUno"
+                class="ng-valid ng-dirty ng-touched">
+            <label for="searchUno" class="">Buscar usuario</label><span data-error="wrong" data-success="right"
+                class="helper-text"> {{(datosBitacoraIns | filter: searchUno).length}} / {{datosBitacoraIns.length}}
+            </span>
+        </div>
+        
+        <div id="lista-instituciones" class="input-field offset-s8 sefin-col-sm-4">
+            <select (change)="cambioInstitucion()" name="instituciones" id="instituciones" [(ngModel)]="institucionId">
+                <option *ngFor="let i of arrayInstituciones" value="{{i.INSTITUCION}}">
+                    {{ i.INSTITUCION }} - {{ i.DESC_INSTITUCION }}
+                </option>
+                <option [value]="-1">Todas</option>
+            </select>
+            <label for="instituciones">Selecciona una institución</label>
+        </div>
+    </div>
+
+    <div class="sefin-col-sm-12">
+        <table class="striped responsive-table">
+            <caption></caption>
+            <thead>
+                <tr>
+                    <th class="uppercase" scope="col">Usuario</th>
+                    <th class="uppercase" scope="col">Institución</th>
+                    <th class="uppercase" scope="col">Fecha y hora</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let db of datosBitacoraIns | filter: searchUno | filterCampo: 'institucionId': institucionId | paginate: { itemsPerPage: 5, currentPage: pagina}">
+                    <td>{{ db.usuarioPI }}</td>
+                    <td> {{ db.institucionId }} - {{ nombreInstitucion(db.institucionId) }}</td>
+                    <td>{{ db.fechaAcceso }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>    
+
+    <div class="row">
+        <div class="sefin-col-lg-12">
+            <div class="right negrilla">
+                <button (click)="imprimir((datosBitacoraIns), 'bitacoraAccesoIns')" title="Imprimir" class="btn cyan mt-1 mr-1">
+                    <i aria-hidden="true" class="material-icons center">print</i>
+                </button>
+
+                <button (click)="descargarLista((datosBitacoraIns), 'Bitácora de Acceso al Portal Institucional')" title="Descargar" class="btn cyan mt-1">
+                    <i aria-hidden="true" class="material-icons center">download</i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="center-align mt-5">
+            <p *ngIf="(datosBitacoraIns).length==0">
+                No hay registros
+            </p> 
+            <pagination-controls previousLabel="Anterior" nextLabel="Siguiente"
+                (pageChange)="pagina = $event"></pagination-controls>
+        </div>
+
+        <div class="row mt-5" aria-label="Bitacora usuario consulta">
+            <div class="col s12">
+                <div class="center-align">
+                    <div class="input-field col s3 offset-s3">
+                        <input id="input_text" type="text" class="uppercase"
+                            [value]="usuario" placeholder="Usuario" readonly>
+                        <label for="input_text" class="uppercase">Usuario consulta</label>
+                    </div>
+                    <div class="input-field col s3">
+                        <input id="input_text" type="text" class="uppercase"
+                            [value]="fecha" placeholder="fecha" readonly>
+                        <label for="input_text" class="uppercase">Fecha Consulta</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

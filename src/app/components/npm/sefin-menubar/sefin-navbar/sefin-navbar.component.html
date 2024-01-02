@@ -1,0 +1,10 @@
+                
+  <ul class="right  hide-on-med-and-down">
+        <li *ngFor="let item of menu; let i = index">
+                <a class='dropdown-trigger ' [routerLink]="item.link ? [item.link] : []"
+                    data-target='i'>
+                    <i aria-hidden="true" class="sefin-icono right">{{item.icono}}</i> {{item.titulo}}
+                </a>
+        </li>
+
+    </ul>   

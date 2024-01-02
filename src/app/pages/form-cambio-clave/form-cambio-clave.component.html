@@ -1,0 +1,42 @@
+<main class="container">
+    <div class="row">
+        <div class="sefin-col-sm-12">
+            <h3 class="text-cyan titulos-siret center">
+                <i aria-hidden="true" class="sefin-icono center text-amarillo font40">table_view</i>
+                Administración de usuario - Cambio de clave <br>
+    
+            </h3>
+    
+        </div>
+        <form class="row" #heroForm="ngForm">
+            <div class="input-field col s12">
+                <input id="nombreUsuario" name="nombreUsuario" type="text" class="validate" [(ngModel)]="formularioParaAgregar.nombreUsuario"
+                    #nombre="ngModel" readonly>
+                <label for="nombreUsuario" [ngClass]="{'active': formularioParaAgregar.nombreUsuario != ''}">Nombre usuario</label>
+            </div>
+
+            <div class="input-field col s12">
+                <input id="usuarioPortal" name="usuarioPortal" type="text" class="validate" [(ngModel)]="formularioParaAgregar.usuarioPortal"
+                    #nombre="ngModel" readonly>
+                <label for="usuarioPortal" [ngClass]="{'active': formularioParaAgregar.usuarioPortal != ''}">Usuario Portal</label>
+            </div>
+
+            <div class="input-field col s12">
+                <input id="claveUsuario" name="claveUsuario" type="password" class="validate" [(ngModel)]="formularioParaAgregar.claveUsuario"
+                    #nombre="ngModel" required>
+                <label for="claveUsuario">Contraseña usuario</label>
+            </div>
+
+            <div class="input-field col s12">
+                <input id="nuevaClave" name="nuevaClave" type="password" class="validate" [(ngModel)]="formularioParaAgregar.nuevaClave"
+                    #nombre="ngModel" required>
+                <label for="nuevaClave">Nueva contraseña usuario</label>
+            </div>
+
+            <div class="input-field col s12">
+                <button type="button" (click)="realizarCambio()" class="btn cyan right" ><i aria-hidden="true" class="material-icons white-text left">save</i> Aplicar</button>
+                <button type="button" class="btn grey left" (click)="cancelar()"><i aria-hidden="true" class="material-icons white-text left">arrow_back_ios</i> Cancelar</button>
+            </div>
+        </form>
+    </div>
+</main>

@@ -1,0 +1,8 @@
+{
+  "nombre" : "© 2021 Derechos reservados SEFIN",
+  "imagen" : {
+    "height" : "250px",
+    "class" : "sefin-center",
+    "src" : "assets/images/fblancotransparente.png"
+  }
+}

@@ -1,0 +1,47 @@
+<main class="container">
+  <div class="row">
+
+    <div class="sefin-col-sm-12">
+        <h3 class="text-cyan titulos-siret center">
+            <i aria-hidden="true" class="sefin-icono center text-amarillo font40">table_view</i>
+            {{nombre_accion}} Perfil <br>
+
+        </h3>
+
+    </div>
+
+    <form class="row"  #heroForm="ngForm">
+
+        <div class="input-field col s12">
+            <input id="nombreRol" name="nombreRol" type="text" class="validate" [(ngModel)]="objetoRol.nombreRol"
+                #nombre="ngModel" required>
+            <label for="nombreRol" [ngClass]="{'active':objetoRol.nombreRol!=''}">Nombre Rol</label>
+        </div>
+
+        <div class="input-field col s12">
+            <input id="descripcionRol" name="descripcionRol" type="text" class="validate" [(ngModel)]="objetoRol.descripcionRol"
+                #nombre="ngModel" required>
+            <label for="descripcionRol" [ngClass]="{'active':objetoRol.descripcionRol!=''}">Descripción</label>
+        </div>
+
+        <div class="input-field col s12">
+            <select id="estadoRol" name="status" [(ngModel)]="objetoRol.estadoRol" #estado="ngModel" required>
+                <option value="1">Activo</option>
+                <option value="0">Inactivo</option>
+            </select>
+            <label for="estadoRol">Estado</label>
+        </div>
+
+        <div class="input-field col s12">
+            <button title="Aplicar" type="button" (click)="procesar()" class="btn cyan right" [disabled]="!heroForm.form.valid">
+                <i aria-hidden="true" class="material-icons left">save</i>
+                Aplicar</button>
+            
+            <button  title="Regresar" type="button" class="btn gray left" (click)="cancelar()">
+                <i aria-hidden="true" class="material-icons left" >arrow_back_ios</i>   
+                Regresar</button>
+        </div>
+
+    </form>
+  </div>
+</main>

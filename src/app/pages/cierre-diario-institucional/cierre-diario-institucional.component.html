@@ -1,0 +1,133 @@
+<div *ngIf="screen==='home'" class="sefin-row">
+    <div class="sefin-col-sm-12">
+
+        <div class="sefin-col-sm-12">
+            <h3 class="text-cyan titulos-siret center">
+                <i aria-hidden="true" class="sefin-icono center text-amarillo font40">table_view</i>
+                CIERRE DIARIO POR CAJA INSTITUCIONAL <br>
+            </h3>
+
+        </div>
+
+        <p>
+            <a type="button" (click)="regresar()" class="btn grey white-text mb-3"><i aria-hidden="true" class="material-icons left">arrow_back_ios</i> Regresar
+            </a>
+        </p>
+    </div>
+    <div class="sefin-row">
+        <div class="col s12 m4">
+            <label for="Daterangepicker2">Buscar por fechas</label>
+            <input 
+                type="text" 
+                id="Daterangepicker2" 
+                bsDaterangepicker
+                [bsConfig]="bsConfig"
+                [(ngModel)]="range"
+                (bsValueChange)="cambioDeFecha($event)"
+            >
+        </div>
+
+        <div id="buscador" class="input-field  offset-s4 sefin-col-sm-4">
+            <i aria-hidden="true" class="sefin-icono prefix">search</i><input id="searchUno" type="text" name="searchUno" [(ngModel)]="searchUno"
+                class="ng-valid ng-dirty ng-touched">
+            <label for="searchUno" class="">Buscar</label><span data-error="wrong" data-success="right"
+                class="helper-text"> {{(cierresInstitucionales | filter: searchUno).length}} / {{cierresInstitucionales.length}}
+            </span>
+        </div>
+    </div>
+    <div class="sefin-col-sm-12">
+        <table class="striped responsive-table">
+            <caption></caption>
+            <thead>
+                <tr>
+                    <th scope="col">Nombre Archivo</th>
+                    <th scope="col">Código Caja</th>
+                    <th scope="col">Nombre Caja</th>
+                    <th scope="col">Institución</th>
+                    <th scope="col">Cantidad TGRs</th>
+                    <th scope="col">Recaudación</th>
+                    <th scope="col" style="width: 200px;">Fecha</th>
+                    <th scope="col">Acción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cierreInstitucional of cierresInstitucionales | filter: searchUno | paginate: { itemsPerPage: 5, currentPage: pagina}">
+                    <td>{{ cierreInstitucional.nombreArchivo }}</td>
+                    <td>{{ cierreInstitucional.codigoCaja }}</td>
+                    <td>{{ cierreInstitucional.nombreCaja }}</td>
+                    <td>{{ cierreInstitucional.institucionId + ' - ' + obtenerInstitucion(cierreInstitucional.institucionId) }}</td>
+                    <td>{{ cierreInstitucional.cantidadTgrs }}</td>
+                    <td>{{ cierreInstitucional.recaudacion | currency: 'L ' }}</td>
+                    <td>{{ cierreInstitucional.fecha }}</td>
+                    <td>
+                        <p style="justify-content: space-between;" class="center">
+                            <button (click)="verDetalle(cierreInstitucional)" class="btn cyan" title="Ver Detalle">
+                                <i aria-hidden="true" class="sefin-icono">visibility</i>
+                            </button>
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <div class="sefin-col-lg-12">
+            <div class="right negrilla">
+                <button (click)="imprimir((cierresInstitucionales), searchUno, 'cierreDiarioInstitucional')" title="Imprimir" class="btn cyan mt-1 mr-1">
+                    <i aria-hidden="true" class="material-icons center">print</i>
+                </button>
+
+                <button (click)="descargarLista((cierresInstitucionales), searchUno, 'Cierre Diario Institucional')" title="Descargar" class="btn cyan mt-1">
+                    <i aria-hidden="true" class="material-icons center">download</i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="sefin-col-lg-4">
+            <p class="center negrilla">
+                TOTAL DE TGR: {{calcularTotalFuncion(cierresInstitucionales | filter: searchUno, 'cantidadTgrs')}}
+            </p>
+        </div>
+      
+        <div class="sefin-col-lg-4 offset-l4">
+            <p class="center negrilla">
+                RECAUDACIÓN: {{calcularTotalFuncion(cierresInstitucionales | filter: searchUno, 'recaudacion') | currency: 'L '}}
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="center-align mt-5">
+            <p *ngIf="(cierresInstitucionales).length==0">
+                No hay registros
+            </p> 
+            <pagination-controls previousLabel="Anterior" nextLabel="Siguiente"
+                (pageChange)="pagina = $event"></pagination-controls>
+        </div>
+
+        <div class="row mt-5" aria-label="Bitacora usuario consulta">
+            <div class="col s12">
+                <div class="center-align">
+                    <div class="input-field col s3 offset-s3">
+                        <input id="input_text" type="text" class="uppercase"
+                            [value]="usuario" placeholder="Usuario" readonly>
+                        <label for="input_text" class="uppercase">Usuario consulta</label>
+                    </div>
+                    <div class="input-field col s3">
+                        <input id="input_text" type="text" class="uppercase"
+                            [value]="fecha" placeholder="fecha" readonly>
+                        <label for="input_text" class="uppercase">Fecha Consulta</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="screen==='detalle'" class="sefin-row">
+    <app-detalle-cierre-institucional
+        [cierreInstitucional]="cierreInstitucional"
+        [calcularTotalFuncion]="calcularTotalFuncion"
+        (nuevaScreen)="mostrarPantallaPrincipal($event)"
+    ></app-detalle-cierre-institucional>
+</div>

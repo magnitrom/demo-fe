@@ -1,0 +1,37 @@
+    <ul id="slide-outx" class="sidenav">
+        <ul class="collapsible">
+            <li class=" sefin-center">
+                <img width="200px" src="{{menuModel.imagenApp}}" alt="imageApp">
+            </li>
+            <app-sefin-sidenav [menu]="menuModel.sidenav"></app-sefin-sidenav>
+        </ul>
+    </ul>
+
+
+
+    <div class="navbar">
+        <nav class="navatar sefin-navbar-color">
+            <div id="side-opt" class="nav-wrapper  white-text">
+
+                <a data-target="slide-outx" class="left sidenav-trigger show-on-large brand-logo">
+                    <i aria-hidden="true" class="sefin-icono cp">{{menuModel.iconoApp}}</i> {{menuModel.nombreApp}}
+                </a>
+
+                <!-- Datos de Avatar -->
+                <app-sefin-avatarbar [datosUsuario]="menuModel.usuario"></app-sefin-avatarbar>
+
+                 <!-- Datos nav bar -->
+                <app-sefin-navbar  [menu]="menuModel.navbar"></app-sefin-navbar>
+
+            </div>
+
+        </nav>
+        <br>
+
+
+    </div>
+
+
+
+
+

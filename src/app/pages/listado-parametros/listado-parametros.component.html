@@ -1,0 +1,140 @@
+<main class="container-fluid">
+    <div class="row">
+        <h3 class="text-cyan sefin-titulo-icono titulos-siret center uppercase">
+            <em class="sefin-icono center text-amarillo font40">
+                table_view
+            </em> Parámetros
+        </h3>
+    </div>
+    <div class="row">
+        <div class="col s12 m4 offset-m8">
+            <div class="input-field col  s12 " id="buscador" *ngIf="listadoParametros">
+                <i aria-hidden="true" class="material-icons prefix">search</i>
+                <input autocomplete="off" id="search" type="text" name="search" [(ngModel)]="filterQuery" (input)="pagina=1">
+                <label for="search">Buscar</label>
+            </div>
+        </div>
+        <form [formGroup]="formularioParametro">
+            <ng-container *ngIf="!noMostrar(['gdSIRET_consultaTodoSIRET', 'gdSIRET_jefeIngresosTGR'])">
+                <div class="input-field col s12 m6">
+                    <input id="nombreParametro" type="text" name="nombreParametro" formControlName="nombreParametro"
+                        [attr.disabled]="editando?true:null">
+                    <label for="nombreParametro">Nombre del parámetro</label>
+                </div>
+                <div class="input-field col s12 m6">
+                    <input id="valorParametro" type="text" name="valorParametro" formControlName="valorParametro">
+                    <label for="valorParametro">Valor del parámetro</label>
+                </div>
+            </ng-container>
+            <div class="col s12 m12">
+                <p *ngIf="!editando" class="left">
+                    <button type="button" class="waves-light btn sefin-btn-toolbar-editar"
+                        *ngIf="!noMostrar(['gdSIRET_consultaTodoSIRET', 'gdSIRET_jefeIngresosTGR'])"
+                        [disabled]="!formularioParametro.valid" (click)="agregarParametro()">
+                        <i aria-hidden="true" aria-hidden="true" class="material-icons right">add</i>
+                        Agregar Parámetro
+                    </button>
+                    &nbsp;&nbsp;
+                </p>
+                <p *ngIf="editando" class="left">
+                    <button type="button" class="waves-light btn sefin-btn-toolbar-editar" (click)="editarParametro()"
+                        *ngIf="!noMostrar(['gdSIRET_consultaTodoSIRET'])">
+                        <i aria-hidden="true" aria-hidden="true" class="material-icons right">save</i>
+                        Guardar Cambios
+                    </button>
+                    &nbsp;&nbsp;
+                    <button (click)="cancelar()" title="Cancelar"
+                        class="modal-close btn red  white-text uppercase ">Cancelar</button>
+                    &nbsp;&nbsp;
+                </p>
+
+                <p class="left">
+                    <a type="button" routerLink="/home" class="btn grey white-text mb-3"><i aria-hidden="true"
+                            class="material-icons left">arrow_back_ios</i> Regresar
+                    </a>
+                </p>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <table class="centered">
+                <caption></caption>
+                <thead>
+                    <tr>
+                        <th class="uppercase">Id</th>
+                        <th class="uppercase">Nombre</th>
+                        <th class="uppercase">Valor</th>
+                        <th class="uppercase">Nuevo valor</th>
+                        <th class="uppercase">Estado</th>
+                        <th class="uppercase">Aprobado</th>
+                        <th class="uppercase">Usuario creación</th>
+                        <th class="uppercase">Fecha creación</th>
+                        <th class="uppercase">Usuario modificación</th>
+                        <th class="uppercase">Fecha modificación</th>
+                        <th class="uppercase" *ngIf="!noMostrar(['gdSIRET_consultaTodoSIRET'])">Acción</th>
+                    </tr>
+                </thead>
+                <tbody *ngIf="listadoParametros.length">
+                    <tr
+                        *ngFor="let p of (listadoParametros | filter:filterQuery) | paginate: { itemsPerPage: 6, currentPage: pagina } ">
+                        <td>{{ p.parametroId }}</td>
+                        <td>{{ p.nombreParametro }}</td>
+                        <td>{{ p.valorParametro }}</td>
+                        <td>{{ p.nuevoValor }}</td>
+                        <td>{{ obtenerNombreEstado(p.estado) }}</td>
+                        <td>{{ obtenerNombreAprobado(p.aprobado) }}</td>
+                        <td>{{ p.usuarioCreacion }}</td>
+                        <td>{{ p.fechaCreacion }}</td>
+                        <td>{{ p.usuarioModificacion }}</td>
+                        <td>{{ p.fechaModificacion }}</td>
+                        <td *ngIf="!noMostrar(['gdSIRET_consultaTodoSIRET'])">
+                            <ng-container *ngIf="!noMostrar(['gdSIRET_jefeIngresosTGR'])">
+                                <button (click)="actualizar(p)" class="waves-light btn sefin-btn-toolbar-editar">
+                                    <em class="material-icons left">edit</em>
+                                </button>
+                            </ng-container>
+                            &nbsp;&nbsp;
+                            <ng-container *ngIf="!noMostrar(['gdSIRET_analistaIngresosTGR'])">
+                                <ng-container *ngIf="p.aprobado === 'P'">
+                                    <button (click)="aprobarParametro(p, 'A')"
+                                        class="waves-light btn sefin-btn-toolbar-editar" title="Aprobar">
+                                        <em class="material-icons left">thumb_up</em>
+                                    </button>
+                                    &nbsp;&nbsp;
+                                </ng-container>
+                                <ng-container *ngIf="p.aprobado === 'P'">
+                                    <button (click)="aprobarParametro(p, 'R')"
+                                        class="waves-light btn sefin-btn-toolbar-eliminar" title="Rechazar">
+                                        <em class="material-icons left">thumb_down</em>
+                                    </button>
+                                    &nbsp;&nbsp;
+                                </ng-container>
+                            </ng-container>
+                            <ng-container *ngIf="!noMostrar(['gdSIRET_jefeIngresosTGR'])">
+                                <button *ngIf="p.estado === 'I'" (click)="cambiarEstado(p, 'A')"
+                                    class="waves-light btn sefin-btn-toolbar-editar" title="Activar">
+                                    <em class="material-icons left">check_circle</em>
+                                </button>
+                                <ng-container *ngIf="p.estado === 'I'">&nbsp;&nbsp;</ng-container>
+                                <button *ngIf="p.estado === 'A'" (click)="cambiarEstado(p, 'I')"
+                                    class="waves-light btn sefin-btn-toolbar-eliminar" title="Inactivar">
+                                    <em class="material-icons left">cancel</em>
+                                </button>
+                            </ng-container>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="center-align">
+            <p *ngIf="!listadoParametros.length">
+                No hay registros
+            </p>
+            <pagination-controls previousLabel="Anterior" nextLabel="Siguiente"
+                (pageChange)="pagina = $event"></pagination-controls>
+        </div>
+    </div>
+</main>

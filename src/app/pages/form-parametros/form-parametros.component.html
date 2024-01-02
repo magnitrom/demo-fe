@@ -1,0 +1,51 @@
+<main class="container">
+    <div class="row">
+
+        <div class="sefin-col-sm-12">
+            <h3 class="text-cyan titulos-siret center">
+                <i aria-hidden="true" class="sefin-icono center text-amarillo font40">table_view</i>
+                {{nombre_accion}} Parámetro <br>
+
+            </h3>
+
+        </div>
+               
+
+        <form class="row" #heroForm="ngForm">
+
+            <div class="input-field col s12">
+                <input id="nombreParametro" name="nombreParametro" type="text" class="validate"
+                    [(ngModel)]="itemSeleccionado.nombreParametro" #nombre="ngModel" required>
+                <label for="nombreParametro" [ngClass]="{'active':itemSeleccionado.nombreParametro!=''}">Nombre
+                    Parametro</label>
+            </div>
+
+            <div class="input-field col s12">
+                <input id="valorParametro" name="valorParametro" type="text" class="validate"
+                    [(ngModel)]="itemSeleccionado.valorParametro" #nombre="ngModel" required>
+                <label for="valorParametro" [ngClass]="{'active':itemSeleccionado.valorParametro!=''}">Valor</label>
+            </div>
+
+            <div class="input-field col s12">
+                <select id="estadoParametro" name="status" [(ngModel)]="itemSeleccionado.estadoParametro"
+                    #estado="ngModel" required>
+                    <option value="1">Activo</option>
+                    <option value="0">Inactivo</option>
+                </select>
+                <label for="estadoParametro">Estado</label>
+            </div>
+
+            <div class="input-field col s12">
+                <button type="button" (click)="procesar()" class="btn cyan right"
+                    [disabled]="!heroForm.form.valid">
+                    <i aria-hidden="true" class="material-icons left">save</i>
+                    Guardar</button>
+                <button type="button" class="btn grey left" (click)="cancelar()">
+                    <i aria-hidden="true" class="material-icons left">arrow_back_ios</i>
+                    REGRESAR</button>
+            </div>
+
+        </form>
+
+    </div>
+</main>

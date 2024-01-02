@@ -1,0 +1,75 @@
+<main class="container" *ngIf="screen=='lista'">
+
+    <div class="sefin-col-sm-12">
+        <h3 class="text-cyan titulos-siret center">
+            <i aria-hidden="true" class="sefin-icono center text-amarillo font40">table_view</i>
+            Parámetros <br>
+           
+        </h3>     
+
+    </div>
+
+    <div class="col s12">       
+            <a title="Regresar" [routerLink]="['/home']" class="uppercase btn grey mr10">
+                <i aria-hidden="true" class="material-icons left">arrow_back_ios</i>    
+                Regresar</a>
+            <button title="Nuevo registro" (click)="goForms()" class="waves-effect waves-light btn cyan">
+                <i aria-hidden="true" class="material-icons left">add</i>  
+                Nuevo registro
+            </button>
+
+            <div class="input-field col right">
+                <input id="input_text" type="text" [(ngModel)]="buscar_input">
+                <label for="input_text">Buscar</label>
+            </div>
+    </div>
+
+    <div class="col s12">
+        <table class="striped responsive-table" aria-label="table">
+            <thead>
+                <tr >
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre parámetro</th>
+                    <th scope="col">Valor parámetro</th>
+                    <th scope="col">Estado parámetro</th>
+                    <th scope="col">Opción</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let prm of jsonParametros | paginate: { itemsPerPage: 5, currentPage: pagina} | filter: buscar_input">
+                    <td>{{prm.parametroId}}</td>
+                    <td>{{prm.nombreParametro}}</td>
+                    <td>{{prm.valorParametro}}</td>
+                    <td>{{prm.estadoParametro ==0 ?'Inactivo' : prm.estadoParametro ==1 ?'Activo':'Eliminado'}}</td>
+                    <th scope="col">
+                        <button title="Editar" type="button" class="waves-effect waves-light btn cyan cyan-"
+                            (click)="clickEditar(prm)">
+                            <i aria-hidden="true" class="material-icons center">edit</i>
+                        </button>
+                        &nbsp;
+                        <button title="Eliminar" type="button" class="waves-effect waves-light btn red "
+                            (click)="clickEliminar(prm)">
+                            <i aria-hidden="true" class="material-icons center">delete</i>
+                        </button>
+                    </th>
+                </tr>
+
+            </tbody>
+        </table>
+
+        
+        <div class="center-align">
+            <p *ngIf="(jsonParametros |filter:buscar_input).length==0">
+                No hay registros
+            </p>
+            <pagination-controls previousLabel="Anterior" nextLabel="Siguiente"
+            (pageChange)="pagina = $event"></pagination-controls>
+        </div>
+
+    </div>
+</main>
+
+<main class="container" *ngIf="screen=='add'">
+    <app-form-parametros (emit)="emit($event)" [itemSeleccionado]="itemSeleccionado"></app-form-parametros>
+</main>

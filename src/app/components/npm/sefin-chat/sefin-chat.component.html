@@ -1,0 +1,61 @@
+<div class="sefin-row">
+  <div class="sefin-col-lg-12">
+      <div class="content" id="init">
+          <section class="msger">
+              <br><br>
+              <header class="msger-header">
+                  <div class="msger-header-title">
+                      {{BOT_NAME}}
+                      <br>
+                      <span class=" sefin-center">Activo</span>
+                  </div>
+              </header>
+
+              <main class="msger-chat">
+                  <div class="msg left-msg">
+                      <div class="msg-img"
+                          style="background-image: url({{BOT_IMG}})">
+                      </div>
+
+                      <div class="msg-bubble">
+                          <div class="msg-info">
+                              <div class="msg-info-name">{{BOT_NAME}}</div>
+                              <div class="msg-info-time">{{formatDate2()}}</div>
+                          </div>
+
+                          <div class="msg-text">
+                              {{welcomeMsg}}
+                          </div>
+                      </div>
+                  </div>
+
+                  <div *ngFor="let d of mensajes" class="msg {{d.side}}-msg">
+                      <div class="msg-img" style="background-image: url({{d.img}})"></div>
+
+                      <div class="msg-bubble">
+                          <div class="msg-info">
+                              <div class="msg-info-name">{{d.name}}</div>
+                              <div class="msg-info-time">{{formatDate2()}}</div>
+                          </div>
+
+                          <div class="msg-text">{{d.text}}</div>
+                      </div>
+                  </div>
+
+                  <div id="end"></div>
+
+              </main>
+
+              <form class="msger-inputarea" (ngSubmit)="submit()">
+                  <input type="text" class="msger-input" [(ngModel)]="msgerInput" name="msgerInput"
+                      placeholder="Escriba su mensaje...">
+                  <button type="submit" class="msger-send-btn btn-cyan">
+                      <i aria-hidden="true" class="sefin-icono">send</i>
+                  </button>
+              </form>
+          </section>
+      </div>
+  </div>
+
+
+</div>

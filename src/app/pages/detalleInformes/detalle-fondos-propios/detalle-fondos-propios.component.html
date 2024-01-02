@@ -1,0 +1,48 @@
+<main class="continaer-fluid">
+
+    <div class="sefin-col-sm-12">
+
+        <h3 class="text-cyan sefin-titulo-icono">
+            <i aria-hidden="true" class="sefin-icono left text-amarillo font40">table_view</i>
+            Detalle - Solicitud de fondos propios <br>
+
+        </h3>
+
+        <p> <a type="button" (click)="regresarMain()" class="sefin-btn-cancelar"><i aria-hidden="true" class="left">arrow_back</i> Regresar
+            </a> </p>
+    </div>
+
+    <div class="sefin-row">
+
+        <div class="input-field col s6">
+            <label >Número TGR:</label>
+            <input placeholder="Número TGR" id="institución" type="text" class="active" value="{{detalleFondo.numeroTGR}}" readonly>
+           
+        </div>
+        <div class="input-field col s6">
+            <label for="institución">Institución:</label>
+            <input placeholder="Institución" id="institución" type="text" value="{{detalleFondo.institucion}}" readonly>
+            
+        </div>
+        <div class="input-field col s6">
+            <label for="ocreacion">Origen Creación:</label>
+            <input placeholder="Origen Creación" id="ocreacion" type="text"  value="{{detalleFondo.origenCreacion}}" readonly>
+            
+        </div>
+        <div class="input-field col s6">
+            <label >Total</label>
+            <input placeholder="Total" id="total" type="text" value="{{detalleFondo.total |currency :'L '}}" readonly>
+            
+        </div>
+
+    </div>
+
+    <div class="row center">
+        <div class="sefin-col-lg-12">
+            <iframe [src]="pdfTGR | safe: 'resourceUrl'" width="100%" height="1000" title="Reporte"></iframe>
+        </div>
+    </div>
+
+
+
+</main>

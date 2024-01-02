@@ -1,0 +1,78 @@
+<main class="container">
+    <div class="row">
+        <div class="sefin-col-sm-12">
+            <h3 class="text-cyan titulos-siret center">
+                <i aria-hidden="true" class="sefin-icono center text-amarillo font40">table_view</i>
+                {{nombre_accion}} usuarios <br>
+    
+            </h3>
+    
+        </div>
+
+        <form class="row" #heroForm="ngForm">
+
+            <div class="input-field col s12">
+                <input id="nombreUsuario" name="nombreUsuario" type="text" class="validate" [(ngModel)]="formularioParaAgregar.nombreUsuario"
+                    #nombre="ngModel" required>
+                <label for="nombreUsuario">Nombre usuario</label>
+            </div>
+
+            <div class="input-field col s12">
+                <input id="usuarioPortal" name="usuarioPortal" type="text" class="validate" [(ngModel)]="formularioParaAgregar.usuarioPortal"
+                    #nombre="ngModel" required>
+                <label for="usuarioPortal">Usuario Portal</label>
+            </div>
+
+            <div class="input-field col s12">
+                <input id="claveUsuario" name="claveUsuario" type="password" class="validate" [(ngModel)]="formularioParaAgregar.claveUsuario"
+                    #nombre="ngModel" required>
+                <label for="claveUsuario">Contraseña usuario</label>
+            </div>
+
+            <div class="input-field col s12">
+                <input id="correoUsuario" name="correoUsuario" type="text" class="validate" [(ngModel)]="formularioParaAgregar.correoUsuario"
+                    #nombre="ngModel" required>
+                <label for="correoUsuario">Correo usuario</label>
+            </div>
+
+            <div class="input-field col s12 hide">
+                <input id="codigoEmpleadoUsuario" name="codigoEmpleadoUsuario" type="text" class="validate" [(ngModel)]="formularioParaAgregar.codigoEmpleadoUsuario"
+                    #nombre="ngModel" required>
+                <label for="codigoEmpleadoUsuario">Código de empleado</label>
+            </div>
+
+            <div class="input-field col s12">
+                
+                <select id="institucionId" name="institucionId" [(ngModel)]="formularioParaAgregar.institucionId">
+                    <option *ngFor="let institucion of arrayInstituciones" value="{{(institucion.INSTITUCION)}}">{{institucion.INSTITUCION}} - {{institucion.DESC_INSTITUCION}}</option>
+                </select>
+                <label for="institucionId">Número de institución</label>
+            </div>
+
+            <div class="input-field col s12">
+                <select id="rolId" name="rolId" [(ngModel)]="formularioParaAgregar.rolId">
+                    <option *ngFor="let rol of jsonRoles" value="{{rol.roleId}}">{{rol.roleId}}-{{rol.nombreRol}}</option>
+                </select>
+                <label for="rolId">Rol</label>
+            </div>
+
+            <div class="input-field col s12">
+                <select id="estadoUsuario" name="estadoUsuario" [(ngModel)]="formularioParaAgregar.estadoUsuario" #estado="ngModel" required>
+                    <option value="1">Activo</option>
+                    <option value="0">Inactivo</option>
+                </select>
+                <label for="estadoUsuario">Estado usuario</label>
+            </div>
+    
+            <div class="input-field col s12">
+                <button title="Aplicar" type="button" (click)="agregar()" class="btn cyan right" >
+                    <i aria-hidden="true" class="material-icons left">save</i>
+                    Aplicar</button>
+                <button title="Regresar" type="button" class="btn grey left" (click)="cancelar()">
+                    <i aria-hidden="true" class="material-icons left">arrow_back_ios</i>
+                    Regresar</button>
+            </div>
+        </form>
+
+    </div>
+</main>

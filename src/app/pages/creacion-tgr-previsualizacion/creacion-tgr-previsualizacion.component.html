@@ -1,0 +1,25 @@
+<div class="container-fluid">
+    <div class="row">
+
+
+        <h3 class="text-cyan sefin-titulo-icono">
+            <i aria-hidden="true" class="sefin-icono left text-amarillo font40">table_view</i>
+            Generación de Comprobante <br>
+            <span class="text-gris">Oficial de Pago</span>
+        </h3>
+
+        <p>
+            <a [routerLink]="['/consulta-tgr', numeroTGR, documento, estado]" class="sefin-btn-cancelar"><i aria-hidden="true" class="left">arrow_back</i> Volver a la consulta de TGR {{numeroTGR}} 
+            </a>
+
+        </p>
+    </div>
+
+
+
+    <div class="row center">
+        <div class="sefin-col-lg-12">
+            <iframe [src]="pdfTGR | safe: 'resourceUrl'" width="100%" height="1000" title="Reporte"></iframe>
+        </div>
+    </div>
+</div>

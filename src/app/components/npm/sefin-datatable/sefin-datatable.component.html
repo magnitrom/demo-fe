@@ -1,0 +1,75 @@
+<div class="sefin-row">
+    <div class="sefin-col-sm-12">
+        <h3 class="text-cyan sefin-titulo-icono">
+            <i aria-hidden="true" class="sefin-icono left text-amarillo font40">
+              {{icono?icono:' table_view'}}
+           </i> {{titulo}}
+            <br>
+            <span class="text-gris">{{subTitulo}}</span>
+        </h3>
+
+
+    </div>
+    <div class="sefin-col-sm-12">
+
+        <div *ngIf="botonesExternos && botonesExternos.length > 0" class="sefin-row sefin-text-right">
+            <button *ngFor="let b of botonesExternos" [ngClass]="b.class?b.class:'sefin-btn-simple-icono'" type="button" (click)="seleccionadoExterno(b.accionId)">
+            <i aria-hidden="true" [ngClass]="{'left':b.texto!=''}">{{b.icono}}</i>
+            {{b.texto}}
+          </button>
+        </div>
+
+    </div>
+    <div class="sefin-col-sm-12">
+
+        <table class={{tableClass}}>
+            <caption></caption>
+            <thead>
+                <tr>
+                    <th *ngIf="botonesExternos && botonesExternos.length > 0">
+                        <label>   <input type="checkbox" value="regs" class="filled-in" (change)="checkUncheckAll($event)"/> <span></span> </label>
+                    </th>
+                    <th *ngFor="let h of listaHeaders">
+
+                        <span *ngIf="filtrarColumnas" (click)="filtroTitulo = !filtroTitulo">
+                               {{h.titulo}}
+                        </span>
+                        <input *ngIf="filtroTitulo && filtrarColumnas" id="icon_prefix" type="text" (keyup)="applyFilter($event,h.campo)">
+
+
+                        <span *ngIf="!filtrarColumnas">{{h.titulo}}</span>
+
+                    </th>
+                    <th *ngIf="botones && botones.length > 0">Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let d of dataPaginate[paginateActive]">
+                    <td *ngIf="botonesExternos && botonesExternos.length > 0">
+                        <label>   <input type="checkbox" value="regs"  [checked]="d.selected" (change)="checkCheckBoxvalue($event, d)"/> <span></span> </label>
+                    </td>
+                    <td *ngFor="let h of listaHeaders">{{d[h.campo]}}</td>
+                    <td *ngIf="botones && botones.length > 0">
+                        <button *ngFor="let b of botones" [ngClass]="b.class?b.class:'sefin-btn-simple-icono'" type="button" (click)="seleccionado(b.accionId, d)">
+                            <i aria-hidden="true">{{b.icono}}</i>
+                            {{b.texto}}
+                        </button>
+                    </td>
+                </tr>
+                <tr *ngIf="(dataPaginate).length==0">
+                    <td colspan="100" class="sefin-center">No hay registros</td>
+                </tr>
+            </tbody>
+        </table>
+        <ul class="pagination center">
+            <li *ngIf="paginateActive>1"><a (click)="paginateActive=paginateActive-1"><i aria-hidden="true"
+                        class="sefin-icono">chevron_left</i></a></li>
+            <li class="waves-effect " [ngClass]="{'active cyan': paginateActive==d}" *ngFor="let d of listPagination"><a (click)="paginateActive=d">{{d}}</a></li>
+            <li *ngIf="paginateActive<listPagination.length" class="waves-effect"><a (click)="paginateActive=paginateActive+1"><i aria-hidden="true" class="sefin-icono">chevron_right</i></a></li>
+            <li *ngIf="paginateActive==listPagination.length" class="waves-effect">
+                <a (click)="llamar50Mas()"> Ver más... </a>
+            </li>
+        </ul>
+    </div>
+</div>

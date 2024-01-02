@@ -1,0 +1,35 @@
+<div class="sefin-row">
+  <div class="sefin-col-sm-12">
+      <h3 class="sefin-titulo-1">FAQ's </h3>
+  </div>
+
+  <div class="sefin-col-lg-4">
+      <div class="input-field sefin-col-sm-12">
+          <i aria-hidden="true" class="sefin-icono prefix">search</i>
+          <input id="search" type="text" [(ngModel)]="search" name="search">
+          <label for="search">Buscar</label>
+      </div>
+  </div>
+  <div class="sefin-col-sm-12">
+      <ul class="collapsible">
+          <li *ngFor="let p of (modelFaqs.listadoFaqs | filter: search) | paginate: { itemsPerPage: modelFaqs.paginacion, currentPage: currPage}">
+              <div class="collapsible-header"><i aria-hidden="true" class="sefin-icono">keyboard_arrow_down</i><b>{{p.question}}</b>
+              </div>
+              <div class="collapsible-body"><span>{{p.answer}}</span></div>
+          </li>
+          <li class="collection-item avatar"
+              *ngIf="( (modelFaqs.listadoFaqs  | filter: search) | paginate: { itemsPerPage: modelFaqs.paginacion, currentPage: currPage}).length==0">
+              <p class="sefin-centergrey-text">
+                  <i aria-hidden="true" class="sefin-icono" style="font-size: 100px;">engineering</i>
+              </p>
+              <h4 class="sefin-centergrey-text">No hay faqs disponibles</h4>
+              <br>
+          </li>
+
+      </ul>
+      <div class=" sefin-center">
+          <pagination-controls previousLabel="Anterior" nextLabel="Siguiente" (pageChange)="currPage = $event">
+          </pagination-controls>
+      </div>
+  </div>
+</div>

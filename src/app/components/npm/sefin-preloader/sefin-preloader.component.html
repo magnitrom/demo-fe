@@ -1,0 +1,27 @@
+<div *ngIf="preloaderModel.lineal" class="progress">
+  <div class="{{preloaderModel.lineal.tipo}}" [style.width]="preloaderModel.lineal.width"></div>
+</div>
+
+<div *ngIf="preloaderModel.circular" class="preloader-wrapper {{preloaderModel.circular.size}} active">
+  <div class="spinner-layer spinner-{{preloaderModel.circular.color}}-only">
+    <div class="circle-clipper left">
+      <div class="circle"></div>
+    </div><div class="gap-patch">
+      <div class="circle"></div>
+    </div><div class="circle-clipper right">
+      <div class="circle"></div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="preloaderModel.circular?.colors" class="preloader-wrapper {{preloaderModel.circular?.size}} active">
+  <div *ngFor="let color of preloaderModel.circular?.colors" class="spinner-layer spinner-{{color}}">
+    <div class="circle-clipper left">
+      <div class="circle"></div>
+    </div><div class="gap-patch">
+      <div class="circle"></div>
+    </div><div class="circle-clipper right">
+      <div class="circle"></div>
+    </div>
+  </div>
+</div>

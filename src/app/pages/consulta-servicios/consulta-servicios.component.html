@@ -1,0 +1,68 @@
+<main class="container-fluid">
+    <div class="row">
+        <div class="sefin-col-sm-12">
+            <h3 class="text-cyan titulos-siret center">
+                <i aria-hidden="true" class="sefin-icono center text-amarillo font40">table_view</i>
+                CONSULTA DE SERVICIOS INSTITUCIONALES<br>
+
+            </h3>
+
+        </div>
+
+        <div class="col s6">
+            <a [routerLink]="['/home']" class="waves-effect waves-light btn grey ">
+                <i aria-hidden="true" title="Regresar" class="material-icons left">arrow_back_ios</i>
+                Regresar</a>
+
+        </div>
+        <div class="input-field col s6">
+            <select id="cajaId" name="cajaId" (change)="onChangeInstitucion($event)">
+                <option 
+                    *ngFor="let institucion of arrayInstituciones" 
+                    value="{{institucion.INSTITUCION}}"
+                >
+                    {{institucion.INSTITUCION}} - {{institucion.DESC_INSTITUCION}}
+                </option>
+                <option value="-1" [defaultSelected]="true">Todas</option>
+            </select>
+            <label for="cajaId">Seleccione institución</label>
+        </div>
+
+        &nbsp;&nbsp;&nbsp;
+
+        <div class="col s12">
+            <table class="striped responsive-table">
+                <caption></caption>
+                <thead>
+                    <tr> 
+                        <th>Institución</th>
+                        <th style="width: 7%;">Código de servicio</th>
+                        <th>Servicio</th>
+                        <th>Rubro</th>
+                        <th>Valor Pagar</th>
+                        <th>Vigencia Servicio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let srv of arrayServicios | paginate: { itemsPerPage: 10, currentPage: pagina }">
+                        <td>{{srv.institucionId}} - {{obtenerNombreInstitucion(srv.institucionId)}}</td>
+                        <td>{{srv.servicioId}}</td>
+                        <td>{{srv.descripcion}}</td>
+                        <td>{{obtenerNombreRubro(srv.rubroId)}}</td>
+                        <td>{{srv.monto | currency :'L '}}</td>
+                        <td>{{obtenerNombreEstado(srv.estado)}}</td>
+                        <td>{{obtenerNombreAprobado(srv.aprobado)}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="center-align">
+            <p *ngIf="(arrayServicios).length==0">
+                No hay registros
+            </p>
+            <pagination-controls previousLabel="Anterior" nextLabel="Siguiente"
+                (pageChange)="pagina = $event"></pagination-controls>
+        </div>
+    </div>
+</main>

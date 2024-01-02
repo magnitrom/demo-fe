@@ -1,0 +1,110 @@
+<div class="sefin-row">
+    <div class="sefin-col-sm-12">
+        <div class="sefin-col-sm-12">
+            <h3 class="text-cyan titulos-siret center">
+                <i aria-hidden="true" class="sefin-icono center text-amarillo font40">table_view</i>
+                ARCHIVO DE CIERRE DIARIO CAJA INSTITUCIONAL <br>
+            </h3>
+        </div>
+        <p>
+            <a type="button" (click)="regresar()" class="btn grey white-text mb-3"><i aria-hidden="true" class="material-icons left">arrow_back_ios</i> Regresar
+            </a>
+        </p>
+    </div>
+
+    <div class="sefin-row">
+        <div class="input-field sefin-col-sm-6">
+            <div class="input-field">
+                <input id="input_text" type="text" class="uppercase"
+                    [value]="cierreInstitucional.nombreArchivo" placeholder="Código Archivo" readonly>
+                <label for="input_text" class="uppercase active">Código Archivo</label>
+            </div>
+        </div>
+       
+    </div>
+
+    <div class="sefin-row">
+        <div class="input-field sefin-col-sm-4">
+            <div class="input-field">
+                <input id="input_text" type="text" class="uppercase"
+                    [value]="cierreInstitucional.recaudacion | currency: 'L '" placeholder="Comisión" readonly>
+                <label for="input_text" class="uppercase active">Recaudación</label>
+            </div>
+        </div>
+        <div class="input-field sefin-col-sm-4">
+            <div class="input-field">
+                <input id="input_text" type="text" class="uppercase"
+                    [value]="cierreInstitucional.fecha" placeholder="Fecha" readonly>
+                <label for="input_text" class="uppercase active">Fecha</label>
+            </div>
+        </div>
+        <div class="input-field sefin-col-sm-4">
+            <div class="input-field">
+                <input id="input_text" type="text" class="uppercase"
+                    [value]="cierreInstitucional.cantidadTgrs" placeholder="Cantidad TGR" readonly>
+                <label for="input_text" class="uppercase active">Cantidad TGR</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="sefin-col-sm-12">
+        <table class="striped responsive-table">
+            <caption></caption>
+            <thead>
+                <tr>
+                    <th scope="col">N°</th>
+                    <th scope="col">Nombre Archivo</th>
+                    <th scope="col">Número TGR</th>
+                    <th scope="col">Monto</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col">Fecha Pago</th>
+                    <th scope="col">Institución</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let detalle of detallesCierre | paginate: { itemsPerPage: 7, currentPage: pagina}, let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ detalle.nombreArchivo }}</td>
+                    <td>{{ detalle.numeroTgr }}</td>
+                    <td>{{ detalle.montoTgr | currency: 'L ' }}</td>
+                    <td>{{ detalle.estadoTgr }}</td>
+                    <td>{{ detalle.fechaPago }}</td>
+                    <td>{{ detalle.institucionId + ' - ' + obtenerInstitucion(detalle.institucionId) }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="sefin-row">
+        <div class="input-field sefin-col-sm-3">
+            <div class="input-field">
+                <input id="input_text" type="text" class="uppercase"
+                    [value]="calcularTotalFuncion(detallesCierre, 'montoTgr') | currency: 'L '" placeholder="MONTO TGR" readonly>
+                <label for="input_text" class="uppercase active">MONTO TGR</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="sefin-col-lg-12">
+            <div class="right negrilla">
+                <button (click)="imprimir((detallesCierre), '', 'detalleCierreIns')" title="Imprimir" class="btn cyan mt-1 mr-1">
+                    <i aria-hidden="true" class="material-icons center">print</i>
+                </button>
+
+                <button (click)="descargarLista((detallesCierre), '', 'Detalle Cierre Diario Institucional')" title="Descargar" class="btn cyan mt-1">
+                    <i aria-hidden="true" class="material-icons center">download</i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="center-align mt-5">
+            <p *ngIf="!detallesCierre.length">
+                No hay registros
+            </p> 
+            <pagination-controls previousLabel="Anterior" nextLabel="Siguiente"
+                (pageChange)="pagina = $event"></pagination-controls>
+        </div>
+    </div>
+</div>

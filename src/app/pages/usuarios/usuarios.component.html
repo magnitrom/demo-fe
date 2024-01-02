@@ -1,0 +1,108 @@
+<main class="container" *ngIf=" screen == 'ready' ">
+
+    <div class="sefin-col-sm-12">
+        <h3 class="text-cyan titulos-siret center">
+            <i aria-hidden="true" class="sefin-icono center text-amarillo font40">table_view</i>
+            USUARIOS <br>
+
+        </h3>
+
+    </div>
+
+    <div class="col s12">
+
+        <a [routerLink]="['/home']" class="waves-effect waves-light btn grey ">
+            <i aria-hidden="true" title="Regresar" class="material-icons left">arrow_back_ios</i>
+            Regresar</a>
+        <button title="Nuevo Registro" (click)="goForm()" class="waves-effect waves-light btn cyan ml-2">
+            <i aria-hidden="true" class="material-icons left">add</i>
+            Nuevo registro
+        </button>
+
+        <div class="input-field col right">
+            <input id="input_text" type="text" [(ngModel)]="buscar_input">
+            <label for="input_text">Buscar</label>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="col s12">
+            <table class="striped" aria-label="tabla">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre usuario</th>
+                        <th>Usuario</th>
+                        <th>INSTITUCIÓN</th>
+                        <th>Role</th>
+                        <th>Correo</th>
+                        <th>Estado Usuario</th>
+                        <th>OPCIÓN</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr
+                        *ngFor="let info of jsonUsuarios | filter: buscar_input | paginate: { itemsPerPage: 5, currentPage: pagina}">
+                        <td>{{info.usuarioIdFE}}</td>
+                        <td>{{info.nombreUsuarioFE}}</td>
+                        <td>{{info.usuarioPortalFE}}</td>
+                        <td>{{info.institucionId}}</td>
+                        <td>{{info.roleIdFE.nombreRol}}</td>
+                        <td>{{info.correoUsuarioFE}}</td>
+                        <td>{{info.estadoUsuarioFE ==0 ?'Inactivo' : info.estadoUsuarioFE ==1 ?'Activo':
+                            info.estadoUsuarioFE ==2 ?'Eliminado':'Bloqueado'}}</td>
+                        <td>
+
+                            <button title="Editar" type="button" class="waves-effect waves-light btn cyan ml-1"
+                                (click)="editarInformacion(info)">
+                                <i aria-hidden="true" class="material-icons center">edit</i>
+                            </button>
+
+                            <button title="Desbloquear" type="button" class="waves-effect waves-light btn cyan ml-1"
+                                (click)="desbloquear(info)">
+                                <i aria-hidden="true" class="material-icons center">lock_open</i>
+                            </button>
+
+
+
+                            <button title="Cambiar Clave" type="button" class="waves-effect waves-light btn cyan ml-1"
+                                (click)="cambio(info)">
+                                <i aria-hidden="true" class="material-icons center">vpn_key</i>
+                            </button>
+
+                            <button title="Eliminar" type="button" class="waves-effect waves-light btn red ml-1"
+                                (click)="eliminar(info)">
+                                <i aria-hidden="true" class="material-icons center">lock</i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr *ngIf="jsonUsuarios.length==0">
+                        <td colspan="8">No hay registros</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="center-align">
+                <p *ngIf="(jsonUsuarios |filter:buscar_input).length==0">
+                    No hay registros
+                </p>
+                <pagination-controls previousLabel="Anterior" nextLabel="Siguiente"
+                    (pageChange)="pagina = $event"></pagination-controls>
+            </div>
+
+        </div>
+    </div>
+
+</main>
+
+<main class="container" *ngIf="screen == 'add'">
+    <app-form-usuarios (emit)="emit($event)" [formularioParaAgregar]="formularioParaAgregar"></app-form-usuarios>
+</main>
+
+<main class="container" *ngIf="screen == 'change'">
+    <app-form-cambio-clave (emit)="emit($event)"
+        [formularioParaAgregar]="formularioParaAgregar"></app-form-cambio-clave>
+</main>

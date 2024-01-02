@@ -1,0 +1,16 @@
+
+<ul class="collapsible">
+    <li *ngFor="let item of menu">
+        <div class="collapsible-header">
+            <a class="sidenav-close sefin-color-color-gris"  [routerLink]="item.link ? [item.link] : []">
+                <i aria-hidden="true" class="sefin-icono">{{item.icono}}</i>{{item.titulo}}
+            </a>
+        </div>
+
+        <div  *ngIf="item.opciones"  class="collapsible-body">
+            <app-sefin-sidenav [menu] = "item.opciones"></app-sefin-sidenav>
+        </div>
+    </li>
+
+</ul>
+

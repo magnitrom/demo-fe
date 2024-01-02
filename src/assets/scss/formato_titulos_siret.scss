@@ -1,0 +1,83 @@
+@font-face {
+    font-family: 'Pluto Sans Heavy';
+    src        : url('../fonts/PlutoSansHeavy.otf') format('opentype');
+    font-weight: normal;
+    font-style : normal;
+}
+
+@font-face {
+    font-family: 'Pluto SansW04-Bold';
+    src        : url('../fonts/PlutoSansW04Bold.otf') format('opentype');
+    font-weight: normal;
+    font-style : normal;
+}
+
+@font-face {
+    font-family: 'Pluto Sans Medium';
+    src        : url('../fonts/PlutoSansMedium.otf') format('opentype');
+    font-weight: normal;
+    font-style : normal;
+}
+
+@font-face {
+    font-family: 'Pluto Sans Regular';
+    src        : url('../fonts/PlutoSansRegular.otf') format('opentype');
+    font-weight: normal;
+    font-style : normal;
+}
+
+/*CLASES PARA LOS TITULO, SUBITUTLOS Y HEADER DE DE LAS TABLAS*/
+.titulos-siret {
+    font-family   : "Pluto Sans Heavy", sans-serif;
+    text-transform: uppercase;
+}
+
+.subtitulos-siret {
+    font-family   : "Pluto SansW04-Bold", sans-serif;
+    text-transform: uppercase;
+}
+
+.cabecera-tabla-siret {
+    font-family   : "Pluto Sans Medium", sans-serif;
+    text-transform: uppercase;
+    font-weight   : bold;
+    text-align    : center;
+}
+
+body {
+    margin     : 0;
+    font-family: 'Pluto Sans Regular', Roboto, "Helvetica Neue", sans-serif;
+    height     : 100%;
+}
+
+th {
+    // Estilos para los encabezados de columna
+    font-family   : "Pluto Sans Medium", sans-serif;
+    text-transform: uppercase;
+    font-weight   : bold;
+    text-align    : center;
+    // Otros estilos deseados
+}
+
+td {
+    text-align: center;
+}
+
+
+input{
+    color: grey;
+}
+
+button,
+a,
+input {
+    font-family: 'Pluto Sans Regular', sans-serif;
+}
+
+.img-to-icon-gray {
+    float      : left;
+    height     : 32px;
+    line-height: 34px;
+    margin     : 4px 28px 0 0;
+    filter     : invert(0.6);
+}

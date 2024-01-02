@@ -1,0 +1,29 @@
+        <ul id="avatar" class="right show-on-large">
+            <li><a class="dropdown-trigger" href="#!" data-target='usuario'>
+                    <img class="circle" src="assets/images/alvin.png" alt="alvin.png">
+                </a>
+            </li>
+            
+        </ul>
+        
+       <!-- Aca se puede iterar el card de la configuracion de usaurios -->
+
+        <ul id='usuario' class='dropdown-content'>
+            <li>
+                <a class="disabled sefin-center">
+                    {{datosUsuario.nombre}}
+                    <br>
+                    <img src="{{datosUsuario.imagen}}" class="user" alt="usuario imagen">
+                    <br>
+                    <small>{{datosUsuario.rol}}</small>
+                    <br>
+                </a>
+            </li>
+            <li class="divider" tabindex="-1"></li>
+            <div *ngIf="datosUsuario.opciones">          
+                <li *ngFor="let item of datosUsuario.opciones; let i=index">
+                    <a> <i aria-hidden="true" class="sefin-icono">{{item.icono}}</i>{{item.titulo}}</a>
+                </li>
+            </div>
+        </ul>
+

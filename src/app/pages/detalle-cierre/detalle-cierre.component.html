@@ -1,0 +1,165 @@
+<div class="sefin-row">
+    <div class="sefin-col-sm-12">
+        <div class="sefin-col-sm-12">
+            <h3 class="text-cyan titulos-siret center">
+                <i aria-hidden="true" class="sefin-icono center text-amarillo font40">table_view</i>
+                ARCHIVO DE CIERRE DIARIO BANCARIO <br>
+            </h3>
+        </div>
+        <p>
+            <a type="button" (click)="regresar()" class="btn grey white-text mb-3">
+                <i aria-hidden="true" class="material-icons left">arrow_back_ios</i> 
+                Regresar
+            </a>
+        </p>
+    </div>
+
+    <div class="sefin-row">
+        <div class="input-field sefin-col-sm-4">
+            <div class="input-field">
+                <input id="input_text" type="text" class="uppercase"
+                    [value]="cierreBancario.nombreArchivo" placeholder="Nombre Archivo" readonly>
+                <label for="input_text" class="uppercase">Nombre Archivo</label>
+            </div>
+        </div>
+        <div class="input-field sefin-col-sm-4">
+            <div class="input-field">
+                <input id="input_text" type="text" class="uppercase"
+                    [value]="cierreBancario.banco" placeholder="Banco" readonly>
+                <label for="input_text" class="uppercase">Banco</label>
+            </div>
+        </div>
+        <div class="input-field sefin-col-sm-4">
+            <div class="input-field">
+                <input id="input_text" type="text" class="uppercase"
+                [value]="cierreBancario.estado" placeholder="Estado" readonly>
+                <label for="input_text" class="uppercase">Estado</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="sefin-row">
+        <div class="input-field sefin-col-sm-3">
+            <div class="input-field">
+                <input id="input_text" type="text" class="uppercase"
+                    [value]="cierreBancario.recaudacion | currency: 'L '" placeholder="Recaudación" readonly>
+                <label for="input_text" class="uppercase">Recaudación</label>
+            </div>
+        </div>
+        <div class="input-field sefin-col-sm-3">
+            <div class="input-field">
+                <input id="input_text" type="text" class="uppercase"
+                    [value]="cierreBancario.comisionDiaria | currency: 'L '" placeholder="Comisión" readonly>
+                <label for="input_text" class="uppercase">Comisión</label>
+            </div>
+        </div>
+        <div class="input-field sefin-col-sm-3">
+            <div class="input-field">
+                <input id="input_text" type="text" class="uppercase"
+                    [value]="cierreBancario.fecha" placeholder="Fecha" readonly>
+                <label for="input_text" class="uppercase">Fecha</label>
+            </div>
+        </div>
+        <div class="input-field sefin-col-sm-3">
+            <div class="input-field">
+                <input id="input_text" type="text" class="uppercase"
+                    [value]="cierreBancario.cantidadTgrs" placeholder="Cantidad TGR" readonly>
+                <label for="input_text" class="uppercase">Cantidad TGR</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="sefin-col-sm-12">
+        <table class="striped responsive-table">
+            <caption></caption>
+            <thead>
+                <tr>
+                    <th scope="col">N°</th>
+                    <th scope="col">Número TGR</th>
+                    <th scope="col">Monto TGR</th>
+                    <th scope="col">Estado TGR</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Banco</th>
+                    <th scope="col">Agencia</th>
+                    <th scope="col">Cajero</th>
+                    <th scope="col">Transacción Bancaria</th>
+                    <th scope="col">Monto Banco</th>
+                    <th scope="col">Diferencia</th>
+                    <th scope="col">Estado Conciliación</th>
+                    <th scope="col" *ngIf="!noMostrar(['gdSIRET_consultaTodoSIRET'])">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let detalle of detallesCierre | paginate: { itemsPerPage: 7, currentPage: pagina}, let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ detalle.numeroTgr }}</td>
+                    <td>{{ detalle.montoTgr | currency: 'L ' }}</td>
+                    <td class="uppercase">{{ detalle.estadoTgr }}</td>
+                    <td>{{ detalle.fechaPago  }}</td>
+                    <td>{{ cierreBancario.banco }}</td>
+                    <td class="uppercase">{{ detalle.agencia }}</td>
+                    <td class="uppercase">{{ detalle.cajero }}</td>
+                    <td class="uppercase">{{ detalle.transaccionBancaria }}</td>
+                    <td class="uppercase">{{ detalle.montoTgrBanco | currency: 'L ' }}</td>
+                    <td class="uppercase">{{ detalle.diferencia  | currency: 'L ' }}</td>
+                    <td class="uppercase" [ngClass]="{ 'texto-rojo': detalle.estadoConciliacion == 'NO CONCILIADO' }">{{ detalle.estadoConciliacion }}</td>
+                    <td *ngIf="!noMostrar(['gdSIRET_consultaTodoSIRET']) && detalle.estadoConciliacion == 'CONCILIADO'">
+                        <p style="justify-content: space-between;" class="center">
+                            <button class="waves-light btn sefin-btn-toolbar-eliminar" title="Dar de baja" type="button">
+                                <i aria-hidden="true" class="sefin-icono">do_not_disturb_on</i>
+                            </button> &nbsp;&nbsp;
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="sefin-row">
+        <div class="input-field sefin-col-sm-4">
+            <div class="input-field">
+                <input id="input_text" type="text" class="uppercase"
+                    [value]="obtenerDiferencias()" placeholder="CANTIDAD CON DIFERENCIAS" readonly>
+                <label for="input_text" class="uppercase">CANTIDAD CON DIFERENCIAS</label>
+            </div>
+        </div>
+        <div class="input-field sefin-col-sm-4">
+            <div class="input-field">
+                <input id="input_text" type="text" class="uppercase"
+                    [value]="calcularTotalFuncion(detallesCierre, 'diferencia') | currency: 'L '" placeholder="RECAUDACIÓN SIN CONCILIAR" readonly>
+                <label for="input_text" class="uppercase">RECAUDACIÓN SIN CONCILIAR</label>
+            </div>
+        </div>
+        <div class="input-field sefin-col-sm-4">
+            <div class="input-field">
+                <input id="input_text" type="text" class="uppercase"
+                    [value]="calcularTotalFuncion(detallesCierre, 'montoTgrBanco') | currency: 'L '" placeholder="MONTO BANCO" readonly>
+                <label for="input_text" class="uppercase">MONTO BANCO</label>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="row">
+        <div class="sefin-col-lg-12">
+            <div class="right negrilla">
+                <button (click)="imprimir((detallesCierre), '', 'detalleCierre')" title="Imprimir" class="btn cyan mt-1 mr-1">
+                    <i aria-hidden="true" class="material-icons center">print</i>
+                </button>
+
+                <button (click)="descargarLista((detallesCierre), '', 'Cierre Diario Bancario')" title="Descargar" class="btn cyan mt-1">
+                    <i aria-hidden="true" class="material-icons center">download</i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="center-align mt-5">
+            <p *ngIf="(detallesCierre).length==0">
+                No hay registros
+            </p> 
+            <pagination-controls previousLabel="Anterior" nextLabel="Siguiente"
+                (pageChange)="pagina = $event"></pagination-controls>
+        </div>
+    </div>
+</div>

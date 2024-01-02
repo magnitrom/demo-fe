@@ -1,0 +1,122 @@
+<div id="detalleBitacora" class="modal modal-fixed-footer modal-white-bg">
+    <div *ngIf="abrirModalBitacora" class="modal-content">
+        <div class="row">
+            <div class="col s12">
+                <h3 class="text-cyan sefin-titulo-icono uppercase titulos-siret">
+                    <i aria-hidden="true" class="material-icons center text-amarillo font40">
+                        payments
+                    </i> AUDITORÍA DEL ARCHIVO DE CIERRE DIARIO BANCARIO
+                </h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="center-align">
+                <div class="input-field col s12">
+                    <input id="input_text" type="text" class="uppercase"
+                        [value]="codigoArchivoBitacora" placeholder="Usuario" readonly>
+                    <label for="input_text" class="uppercase" [ngClass]="{'active':codigoArchivoBitacora}" >Código Archivo</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <table aria-label="detalle">
+                <thead>
+                    <tr class="uppercase">
+                        <th class="center-align">ESTADO</th>
+                        <th class="center-align">FECHA Y HORA</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr class="grey-text text-darken-1 center"
+                        *ngFor="let bitacora of bitacoraCierreDiario">
+                        <td class="center uppercase">{{bitacora.estado}}</td>
+                        <td class="center">{{bitacora.fecha}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button (click)="cambiarEstadoModalBitacora([false, ''])" class="modal-close btn-flat red   white-text">{{'Cerrar' | uppercase}}</button>
+    </div>
+</div>
+
+<main class="container" *ngIf="screen=='home'">
+    <div class="sefin-row">
+        <div class="sefin-col-sm-12">
+
+
+            <div class="sefin-col-sm-12">
+                <h3 class="text-cyan titulos-siret center">
+                    <i aria-hidden="true" class="sefin-icono center text-amarillo font40">table_view</i>
+                    Cierre Diario de Ingresos del SIRET
+                    <br>
+
+                </h3>
+
+            </div>
+
+            <a [routerLink]="['/home']" class="btn grey white-text mb-3">
+                <i aria-hidden="true" class="material-icons left">arrow_back_ios</i> Regresar
+            </a>
+
+        </div>
+        <br />
+        <div class="sefin-col-sm-12">
+            <table class="striped responsive-table">
+                <caption></caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Nombre del reporte</th>
+                        <th scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="grey-text lighten-1">1</td>
+                        <td class="grey-text lighten-1 left">Cierre Diario Bancario</td>
+                        <th scope="col">
+                            <button title="Detalle" type="button" class="btn cyan" (click)="verDetalle('bancario')">
+                                <i aria-hidden="true" class="material-icons center">visibility</i>
+                            </button>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td class="left">Cierre Diario Caja Institucional</td>
+                        <th scope="col">
+                            <button title="Detalle" type="button" class="btn cyan" (click)="verDetalle('caja-institucional')">
+                                <i aria-hidden="true" class="material-icons center">visibility</i>
+                            </button>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</main>
+
+<main class="container-fluid mb-4" *ngIf="screen === 'bancario'" aria-label="Cierre Diario Bancario">
+    <app-cierre-diario-bancario 
+        [calcularTotalFuncion]="obtenerTotal"
+        [fecha]="fecha"
+        (nuevaScreen)="actualizarScreen($event)" 
+        (nuevoSearchUno)="actualizarSearchUno($event)"
+        (nuevoEstadoModalBitacora)="cambiarEstadoModalBitacora($event)"
+    ></app-cierre-diario-bancario>
+</main>
+
+<main class="container-fluid mb-4" *ngIf="screen === 'caja-institucional'" aria-label="Cierre Diario Bancario">
+    <app-cierre-diario-institucional 
+        [calcularTotalFuncion]="obtenerTotal"
+        [fecha]="fecha"
+        (nuevaScreen)="actualizarScreen($event)" 
+        (nuevoSearchUno)="actualizarSearchUno($event)"
+        (nuevoEstadoModalBitacora)="cambiarEstadoModalBitacora($event)"
+    ></app-cierre-diario-institucional>
+</main>

@@ -1,0 +1,145 @@
+<ul id="slide-out" class="sidenav ">
+    <li class=" sefin-center">
+        <img width="200px" src="assets/images/logo_siret/Logo SIRET_Mesa de trabajo 1-cyan.png" alt="none">
+    </li>
+
+    <ul class="collapsible">
+
+        <li
+            *ngIf="existePerfil(['gdSIRET_consultaTodoSIRET', 'gdSIRET_analistaIngresosTGR', 'gdSIRET_jefeIngresosTGR'])">
+            <a [routerLink]="['listado-parametros']" title="Parámetros" class="grey-text uppercase">
+                <img class="img-to-icon-gray" src="../../../assets/images/menu-icons/blancas/parametros.png" alt="img">
+                Parámetros
+            </a>
+        </li>
+
+        <li [hidden]="true">
+            <a [routerLink]="['roles']" title="Perfiles" class="grey-text uppercase">
+                <img class="img-to-icon-gray" src="../../../assets/images/menu-icons/blancas/perfiles.png" alt="img">
+                Perfiles
+            </a>
+        </li>
+
+        <li [hidden]="true">
+            <a [routerLink]="['usuarios']" title="Usuarios" class="grey-text uppercase">
+                <img class="img-to-icon-gray" src="../../../assets/images/menu-icons/blancas/usuarios.png" alt="img">
+                Usuarios
+            </a>
+        </li>
+
+        <li
+            *ngIf="existePerfil(['gdSIRET_consultaTodoSIRET', 'gdSIRET_analistaIngresosTGR', 'gdSIRET_jefeIngresosTGR', 'gdSIRET_autoridadTGR'])">
+            <a [routerLink]="['informes']" title="Consultas Generales" class="grey-text uppercase">
+                <img class="img-to-icon-gray" src="../../../assets/images/menu-icons/blancas/revision.png" alt="img"> C.
+                Generales
+            </a>
+        </li>
+
+        <li
+            *ngIf="existePerfil(['gdSIRET_consultaTodoSIRET', 'gdSIRET_analistaIngresosTGR', 'gdSIRET_jefeIngresosTGR', 'gdSIRET_autoridadTGR'])">
+            <a [routerLink]="['consulta-servicios']" title="Consultas Servicios" class="grey-text uppercase">
+                <img class="img-to-icon-gray" src="../../../assets/images/menu-icons/blancas/consultageneral.png"
+                    alt="img"> C. Servicios
+            </a>
+        </li>
+
+
+
+
+        <li class="">
+
+            <div class="col s12">
+                <div class="card horizontal">
+                    <div class="card-stacked center">
+                        <div class="card-content center" *ngIf="userProfile">
+                            <i aria-hidden="true" class="medium grey-text material-icons ">person</i>
+                            <p class="uppercase">{{nombreCompleto}}</p>
+
+                            <ul class="collapsible center-align">
+                                <li class="uppercase">
+                                    <div class="collapsible-header grey-text center-align"><i aria-hidden="true"
+                                            class="material-icons">admin_panel_settings</i>Roles</div>
+
+                                    <div class="collapsible-body" *ngFor="let item of roles">
+                                        <small class="grey-text">{{item}}</small>
+                                    </div>
+
+
+                                </li>
+                            </ul>
+
+                        </div>
+
+
+
+                        <div class="card-action">
+                            <a [routerLink]="['/home']" (click)="logout()" class="uppercase grey-text center">
+
+                                <i aria-hidden="true"
+                                    class="center material-icons red-text text-lighten-2">logout</i>Cerrar Sesión
+
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </li>
+
+
+    </ul>
+</ul>
+
+
+<nav class="cyan navbar navbar-fixed">
+    <div id="side-opt" class="nav-wrapper">
+        <!--     <a href="#" data-target="slide-out" class="left sidenav-trigger show-on-large brand-logo">
+            <div class="sefin-row brand-log">
+                <i aria-hidden="true" class="sefin-icono">menu</i> 
+            </div>
+        </a> -->
+        <a routerLink="/home" class="left sidenav-trigger show-on-large brand-logo">
+            <div class="sefin-row brand-log">
+                <img src="assets/images/logo_siret/Logo SIRET-cyan.png" height="58px" alt="Logo SIRET-cyan">
+            </div>
+        </a>
+        <ul class="right hide-on-med-and-down show-on-larget" style="height: inherit;">
+            <li class="mr-1">
+                <app-reloj class="uppercase"></app-reloj>
+            </li>
+
+            <li style="height: inherit;">
+                <a style="height: inherit;" href="#user" class="dropdown-trigger" data-target="dropdown-menu">
+                    <i aria-hidden="true" class="large material-icons center">person</i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<br>
+
+<!-- Agrega este bloque al final del HTML -->
+<ul id="dropdown-menu" class="dropdown-content dropdown-bottom">
+    <li *ngIf="userProfile">
+        <p href="#!" class="center uppercase" style="text-transform: uppercase;">
+            {{userProfile.username}}
+            <br>
+            {{userProfile.firstName}}  {{userProfile.lastName}}
+            <br>
+            <span style="text-transform: lowercase;">{{userProfile.email}} </span>
+            <br>
+            <b>Roles</b>
+            <br>
+            
+            <ng-container *ngFor="let d of misRoles">
+                <span style="max-width: 200px;">{{d}}</span>
+                <br>
+            </ng-container>
+            
+        </p>
+    </li>
+    <li>
+        <a  class="center uppercase small" (click)="logout()">Cerrar Sesión</a>
+    </li>
+</ul>
+
