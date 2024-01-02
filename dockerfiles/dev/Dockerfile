@@ -5,14 +5,14 @@ USER root
 
 RUN mkdir -p /app
 
+RUN ulimit -a
+
 # Set the working directory
 WORKDIR /app
 
 COPY . /app
 
 RUN npm install -g npm@latest
-
-RUN npm install graceful-fs
 
 RUN npm install
 
