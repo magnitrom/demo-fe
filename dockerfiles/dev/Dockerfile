@@ -10,9 +10,15 @@ WORKDIR /app
 
 COPY . /app
 
-RUN npm install -g npm@8.5.0
+RUN npm cache clean --force
+
+RUN npm install -g npm@lates
+
+RUN npm cache clean --force
 
 RUN npm install
+
+RUN npm cache clean --force
 
 # Generate the build of the application
 RUN npm run build-dev
