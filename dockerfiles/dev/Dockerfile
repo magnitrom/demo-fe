@@ -1,11 +1,11 @@
 
 FROM ubi8/nodejs-20 as build
 
+RUN ulimit -n 20000
+
 USER root
 
 RUN mkdir -p /app
-
-RUN ulimit nofile=1024:4096
 
 # Set the working directory
 WORKDIR /app
