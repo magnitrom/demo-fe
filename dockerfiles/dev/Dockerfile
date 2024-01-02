@@ -10,6 +10,8 @@ WORKDIR /app
 
 COPY . /app
 
+RUN npm install -g npm@10.2.5
+
 RUN npm install
 
 # Generate the build of the application
