@@ -3,8 +3,6 @@ FROM ubi8/nodejs-20 as build
 
 USER root
 
-RUN ulimit -n 20000
-
 RUN mkdir -p /app
 
 # Set the working directory
