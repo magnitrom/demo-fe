@@ -1,55 +1,30 @@
-
-#FROM ubi8/nodejs-20 as build
-
-#USER root
-
-#RUN mkdir -p /app
-
-# Set the working directory
-#WORKDIR /app
-
-#COPY . /app
-
-#RUN npm install -g npm@8.5.0
-
-#RUN npm install
-# Generate the build of the application
-#RUN npm run build-dev
-
-#WORKDIR /app/dist
-
-#RUN ls -ltr
-
-# Stage 2: Serve app with nginx server
-#FROM ubi8/nginx-122
-
-#COPY nginx.conf /etc/nginx/nginx.conf
-
-#COPY --from=build /app/dist/fe-siret-portal-administrativo /usr/share/nginx/html
-
-#CMD nginx -g "daemon off;"
-
-######################
 FROM ubi8/nodejs-20 as build
 
-# Set the working directory to /project
-WORKDIR /project
+USER root
 
-# Copy package files in container currunt direcctory
-COPY --chown=1001:1001 package.json package-lock.json ./
+RUN mkdir -p /app
 
+# Set the working directory
+WORKDIR /app
 
-# Install all Angular dependacies
-RUN npm ci
+COPY . /app
 
-# Add application files in container 
-COPY . .
+RUN npm install -g npm@8.15.0
 
-# Set permision of .angular file in container
-VOLUME ["/project/.angular"]
+RUN npm install --force
 
-# Open port to allow traffic in container
-EXPOSE 8080
+# Generate the build of the application
+RUN npm run build-dev
 
-# Run start script using npm command
-CMD ["npm", "start"]
+WORKDIR /app/dist
+
+RUN ls -ltr
+
+# Stage 2: Serve app with nginx server
+FROM ubi8/nginx-122
+
+COPY nginx.conf /etc/nginx/nginx.conf
+
+COPY --from=build /app/dist/fe-siret-portal-administrativo /usr/share/nginx/html
+
+CMD nginx -g "daemon off;"
