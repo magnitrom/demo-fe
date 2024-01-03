@@ -30,16 +30,8 @@ COPY . /app
 #CMD nginx -g "daemon off;"
 
 ######################
+
 RUN npm ci
 
-# Add application files in container 
-COPY . .
-
-# Set permision of .angular file in container
-VOLUME ["/app/.angular"]
-
-# Open port to allow traffic in container
-EXPOSE 8080
-
 # Run start script using npm command
-CMD ["npm", "start"]
+CMD ["npm", {"run":"build-dev"}, "start"]
