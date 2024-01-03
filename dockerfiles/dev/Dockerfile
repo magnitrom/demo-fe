@@ -10,22 +10,36 @@ WORKDIR /app
 
 COPY . /app
 
-RUN npm install -g npm@8.5.0
+#RUN npm install -g npm@8.5.0
 
-RUN npm install
-
+#RUN npm install
 # Generate the build of the application
-RUN npm run build-dev
+#RUN npm run build-dev
 
-WORKDIR /app/dist
+#WORKDIR /app/dist
 
-RUN ls -ltr
+#RUN ls -ltr
 
 # Stage 2: Serve app with nginx server
-FROM ubi8/nginx-122
+#FROM ubi8/nginx-122
 
-COPY nginx.conf /etc/nginx/nginx.conf
+#COPY nginx.conf /etc/nginx/nginx.conf
 
-COPY --from=build /app/dist/fe-siret-portal-administrativo /usr/share/nginx/html
+#COPY --from=build /app/dist/fe-siret-portal-administrativo /usr/share/nginx/html
 
-CMD nginx -g "daemon off;"
+#CMD nginx -g "daemon off;"
+
+######################
+RUN npm ci
+
+# Add application files in container 
+COPY . .
+
+# Set permision of .angular file in container
+VOLUME ["/project/.angular"]
+
+# Open port to allow traffic in container
+EXPOSE 8080
+
+# Run start script using npm command
+CMD ["npm", "start"]
