@@ -36,7 +36,7 @@ RUN npm ci
 COPY . .
 
 # Set permision of .angular file in container
-VOLUME ["/project/.angular"]
+VOLUME ["/app/.angular"]
 
 # Open port to allow traffic in container
 EXPOSE 8080
